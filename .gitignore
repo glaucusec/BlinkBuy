@@ -1,2 +1,3 @@
-node_modules/
-TEST/
+node_modules
+TEST
+.env

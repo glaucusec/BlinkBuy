@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npx tailwindcss -i ./src/input.css -o ./src/style.css --watch",
     "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -19,7 +19,7 @@
       Shopping</marquee
     >
     <header
-      class="border-b border-solid grid grid-cols-3 lg:grid-cols-2 pl-6 pr-6 pt-3 pb-3"
+      class="border-b border-solid grid grid-cols-3 lg:grid-cols-2 pl-6 pr-6 pt-3 pb-3 sticky top-0 z-10 bg-white"
     >
       <a href="#" class="block lg:hidden">
         <svg
@@ -38,7 +38,7 @@
         </svg>
       </a>
 
-      <div class="">
+      <div class=" top-0 z-10">
         <ol class="flex justify-around items-center">
           <a href="#" class="h-8 w-12">
             <img src="./images/logo.svg" alt="Website Logo" />
@@ -317,7 +317,139 @@
       </div>
     </div>
     <div class="my-16">
-      <img src="../public/images/about-us/brand_story.webp" alt="" class="w-full">
+      <img
+        src="../public/images/about-us/brand_story.webp"
+        alt=""
+        class="w-full"
+      />
+    </div>
+
+    <!-- See the latest -->
+    <div class="latest-items my-16 2xl:mx-52 xl:mx-24">
+      <div
+        id="latest-item-header"
+        class="flex flex-col justify-center items-center"
+      >
+        <h2 class="text-2xl font-bold">See the Latest</h2>
+        <p class="flex justify-center items-center text-lg text-gray-500">
+          Handpicked for you
+        </p>
+      </div>
+      <div class="latest-items-wrapper my-16 relative">
+        <a
+          class="prev shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent left-4"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
+          </svg>
+        </a>
+        <div class="lastest-items grid grid-flow-col grid-cols-4 gap-4">
+          <div class="flex flex-col">
+            <img
+              class="object-cover w-full h-full"
+              src="../public/images/latest-items/item1.webp"
+              alt=""
+            />
+            <h2 class="pt-4 font-semibold text-base">
+              Klaeinn Cargo Pocket Co-Ord Set
+            </h2>
+            <div class="flex flex-row justify-items-center item-price gap-1">
+              <p class="sale-price font-semibold text-md">₹1399</p>
+              <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">₹1299</p>
+              <p class="dicount-percentage text-lg font-bold text-green-600">46% off</p>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <img
+              class="object-cover w-full h-full"
+              src="../public/images/latest-items/item2.webp"
+              alt=""
+            />
+            <h2 class="pt-4 font-semibold text-base">
+              Klaeinn Cargo Pocket Co-Ord Set
+            </h2>
+            <div class="flex flex-row justify-items-center item-price gap-1">
+              <p class="sale-price font-semibold text-md">₹1399</p>
+              <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">₹1299</p>
+              <p class="dicount-percentage text-lg font-bold text-green-600">46% off</p>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <img
+              class="object-cover w-full h-full"
+              src="../public/images/latest-items/item3.webp"
+              alt=""
+            />
+            <h2 class="pt-4 font-semibold text-base">
+              Klaeinn Cargo Pocket Co-Ord Set
+            </h2>
+            <div class="flex flex-row justify-items-center item-price gap-1">
+              <p class="sale-price font-semibold text-md">₹1399</p>
+              <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">₹1299</p>
+              <p class="dicount-percentage text-lg font-bold text-green-600">46% off</p>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <img
+              class="object-cover w-full h-full"
+              src="../public/images/latest-items/item4.webp"
+              alt=""
+            />
+            <h2 class="pt-4 font-semibold text-base">
+              Klaeinn Cargo Pocket Co-Ord Set
+            </h2>
+            <div class="flex flex-row justify-items-center item-price gap-1">
+              <p class="sale-price font-semibold text-md">₹1399</p>
+              <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">₹1299</p>
+              <p class="dicount-percentage text-lg font-bold text-green-600">46% off</p>
+            </div>
+          </div>
+          <!-- <div class="flex flex-col">
+            <img src="../public/images/latest-items/item5.webp" alt="" />
+            <h2>Klaeinn Cargo Pocket Co-Ord Set</h2>
+          </div>
+          <div class="flex flex-col">
+            <img src="../public/images/latest-items/item6.webp" alt="" />
+            <h2>Klaeinn Cargo Pocket Co-Ord Set</h2>
+          </div>
+          <div class="flex flex-col">
+            <img src="../public/images/latest-items/item7.webp" alt="" />
+            <h2>Klaeinn Cargo Pocket Co-Ord Set</h2>
+          </div>
+          <div class="flex flex-col">
+            <img src="../public/images/latest-items/item8.webp" alt="" />
+            <h2>Klaeinn Cargo Pocket Co-Ord Set</h2>
+          </div> -->
+        </div>
+        <a
+          class="next shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent right-4"
+          onclick="plusSlides(1)"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m8.25 4.5 7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </body>
 </html>
