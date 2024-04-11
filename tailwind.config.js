@@ -1,13 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./public/*.{html,js}"],
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["Graphik", "sans-serif"],
-      serif: ["Merriweather", "serif"],
-      nunito: ["Nunito", "sans-serif"]
+      nunito: ["Nunito", "sans-serif"],
     },
     extend: {},
   },
-  plugins: [require("tailwindcss"), require("autoprefixer")],
+  plugins: [],
 };
