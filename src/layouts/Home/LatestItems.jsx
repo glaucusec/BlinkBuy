@@ -1,8 +1,26 @@
-import React from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import React, { useState } from "react";
+import Slider from "react-slick";
+
+import Product from "../../components/Product";
+
+import products from "../../data/LatestItemsData";
 
 function LatestItems() {
+  const [sliderRef, setSliderRef] = useState(null);
+
+  let settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+  };
   return (
-    <div class="latest-items my-16 2xl:mx-52 xl:mx-24">
+    <div class="latest-items container mx-auto">
       <div
         id="latest-item-header"
         class="flex flex-col justify-center items-center"
@@ -12,8 +30,9 @@ function LatestItems() {
           Handpicked for you
         </p>
       </div>
+
       <div class="latest-items-wrapper my-16 relative">
-        <a class="prev shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent left-4">
+        <a class="z-10 prev shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent left-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -29,200 +48,19 @@ function LatestItems() {
             />
           </svg>
         </a>
-        <div class="latest-items flex gap-4 overflow-x-auto overflow-y-hidden">
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item1.webp"
-                alt=""
+
+        <Slider {...settings}>
+          {products.map((p, index) => {
+            return (
+              <Product
+                product__image={p.product__image}
+                product__name={p.product__name}
+                product__regular={p.product__regular}
+                product__sale={p.product__sale}
               />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">
-                Klaeinn Cargo Pocket Co-Ord Set
-              </h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹1399</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-bold text-green-600">
-                  46% off
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover h-full w-full"
-                src="../public/images/latest-items/item2.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">
-                Sapphire Luxury Co-Ord Set
-              </h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹949</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1899
-                </p>
-                <p class="dicount-percentage text-lg font-bold text-green-600">
-                  50% off
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item3.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">
-                Grey Melange Hermes Utility Shorts
-              </h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹699</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-semibold text-green-600">
-                  46% off
-                </p>
-              </div>
-              <p class="font-semibold text-green-500">
-                Lowest price in the last 30 days
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item4.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">Oversized T-Shirt</h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹1399</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-semibold text-green-600">
-                  46% off
-                </p>
-              </div>
-              <p class="font-semibold text-green-500">
-                Lowest price in the last 30 days
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item5.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">Oversized T-Shirt</h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹1399</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-semibold text-green-600">
-                  46% off
-                </p>
-              </div>
-              <p class="font-semibold text-green-500">
-                Lowest price in the last 30 days
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item6.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">Oversized T-Shirt</h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹1399</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-semibold text-green-600">
-                  46% off
-                </p>
-              </div>
-              <p class="font-semibold text-green-500">
-                Lowest price in the last 30 days
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item7.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">Oversized T-Shirt</h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹1399</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-semibold text-green-600">
-                  46% off
-                </p>
-              </div>
-              <p class="font-semibold text-green-500">
-                Lowest price in the last 30 days
-              </p>
-            </div>
-          </div>{" "}
-          <div class="item">
-            <div class="item-image h-5/6">
-              <img
-                class="object-cover w-full h-full"
-                src="../public/images/latest-items/item8.webp"
-                alt=""
-              />
-            </div>
-            <div class="item-desc">
-              <h2 class="pt-4 font-semibold text-base">Oversized T-Shirt</h2>
-              <div class="flex flex-row justify-items-center item-price gap-1">
-                <p class="sale-price font-semibold text-md">₹1399</p>
-                <p class="mrp-price flex flex-row justify-center items-center text-sm text-gray-500 line-through">
-                  ₹1299
-                </p>
-                <p class="dicount-percentage text-lg font-semibold text-green-600">
-                  46% off
-                </p>
-              </div>
-              <p class="font-semibold text-green-500">
-                Lowest price in the last 30 days
-              </p>
-            </div>
-          </div>
-        </div>
+            );
+          })}
+        </Slider>
 
         <a
           class="next shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent right-4"
