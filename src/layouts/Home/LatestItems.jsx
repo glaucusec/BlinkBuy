@@ -7,6 +7,8 @@ import Slider from "react-slick";
 import Product from "../../components/Product";
 
 import products from "../../data/LatestItemsData";
+import LeftButton from "../../components/Button/LeftButton";
+import RightButton from "../../components/Button/RightButton";
 
 function LatestItems() {
   const [sliderRef, setSliderRef] = useState(null);
@@ -18,6 +20,32 @@ function LatestItems() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          initialSlide: 2,
+        },
+      },
+    ],
   };
   return (
     <div class="latest-items container mx-auto">
@@ -31,25 +59,11 @@ function LatestItems() {
         </p>
       </div>
 
-      <div class="latest-items-wrapper my-16 relative">
-        <a class="z-10 prev shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent left-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            />
-          </svg>
-        </a>
+      <div class="latest-items-wrapper lg:p-10 relative">
+        <LeftButton clickAction={sliderRef?.slickPrev} />
+        <RightButton clickAction={sliderRef?.slickNext} />
 
-        <Slider {...settings}>
+        <Slider ref={setSliderRef} {...settings}>
           {products.map((p, index) => {
             return (
               <Product
@@ -57,30 +71,11 @@ function LatestItems() {
                 product__name={p.product__name}
                 product__regular={p.product__regular}
                 product__sale={p.product__sale}
+                product__at__lowest={p.product__at__lowest}
               />
             );
           })}
         </Slider>
-
-        <a
-          class="next shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent right-4"
-          onclick="plusSlides(1)"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </a>
       </div>
       <div class="flex justify-center">
         <button class="border rounded-full border-blue-950 px-20 py-1">
