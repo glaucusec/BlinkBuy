@@ -48,18 +48,18 @@ function LatestItems() {
     ],
   };
   return (
-    <div class="latest-items container mx-auto">
+    <div className="latest-items container mx-auto">
       <div
         id="latest-item-header"
-        class="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center"
       >
-        <h2 class="text-2xl font-bold">See the Latest</h2>
-        <p class="flex justify-center items-center text-lg text-gray-500">
+        <h2 className="text-2xl font-bold">See the Latest</h2>
+        <p className="flex justify-center items-center text-lg text-gray-500">
           Handpicked for you
         </p>
       </div>
 
-      <div class="latest-items-wrapper lg:p-10 relative">
+      <div className="latest-items-wrapper  relative">
         <LeftButton clickAction={sliderRef?.slickPrev} />
         <RightButton clickAction={sliderRef?.slickNext} />
 
@@ -67,6 +67,7 @@ function LatestItems() {
           {products.map((p, index) => {
             return (
               <Product
+                key={p.product__id}
                 product__image={p.product__image}
                 product__name={p.product__name}
                 product__regular={p.product__regular}
@@ -77,10 +78,10 @@ function LatestItems() {
           })}
         </Slider>
       </div>
-      <div class="flex justify-center">
-        <button class="border rounded-full border-blue-950 px-20 py-1">
-          <a href="#" class="font-semibold text-blue-950">
-            See all products
+      <div className="flex justify-center my-14">
+        <button className="border rounded-full border-blue-950 px-20 py-1">
+          <a href="#" className="font-semibold text-blue-950">
+            Shop all products
           </a>
         </button>
       </div>

@@ -8,6 +8,7 @@ import Women from "../layouts/Home/Women";
 import BrandStory from "../layouts/Home/BrandStory";
 import LatestItems from "../layouts/Home/LatestItems";
 import TravelHoodie from "../layouts/Home/TravelHoodie";
+import BestSellers from "../layouts/Home/BestSellers";
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
       <BrandStory />
       <LatestItems />
       <TravelHoodie />
+      <BestSellers />
     </>
   );
 }

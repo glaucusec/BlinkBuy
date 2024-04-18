@@ -1,5 +1,6 @@
 const products = [
   {
+    product__id: 1,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item1.webp",
     product__name: "Klaeinn Cargo Pocket Co-Ord Set",
@@ -7,6 +8,7 @@ const products = [
     product__sale: 2599,
   },
   {
+    product__id: 2,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item2.webp",
     product__name: "Sapphire Luxury Co-Ord Set",
@@ -15,6 +17,7 @@ const products = [
     product__at__lowest: true,
   },
   {
+    product__id: 3,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item3.webp",
     product__name: "Grey Melange Hermes Utility Shorts",
@@ -23,6 +26,7 @@ const products = [
     product__at__lowest: true,
   },
   {
+    product__id: 4,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item4.webp",
     product__name: "Oversized T-Shirt",
@@ -31,6 +35,7 @@ const products = [
     product__at__lowest: true,
   },
   {
+    product__id: 5,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item5.webp",
     product__name: "Solid Joggers - Women",
@@ -39,6 +44,7 @@ const products = [
     product__at__lowest: true,
   },
   {
+    product__id: 6,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item6.webp",
     product__name: "Rebecca Women's Coord Set",
@@ -47,6 +53,7 @@ const products = [
     product__at__lowest: true,
   },
   {
+    product__id: 7,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item7.webp",
     product__name: "Oversized Cargo Joggers",
@@ -55,6 +62,7 @@ const products = [
     product__at__lowest: true,
   },
   {
+    product__id: 8,
     product__image:
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/latest-items/item8.webp",
     product__name: "Hwak Men's Co-Ord Sets",

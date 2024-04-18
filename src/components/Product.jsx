@@ -1,5 +1,6 @@
 import React from "react";
 import calculateDiscountPercentage from "../services/PercentageCalculator";
+import BestSeller from "./Badge/BestSeller";
 
 function Product({
   product__image,
@@ -14,7 +15,7 @@ function Product({
 
   return (
     <div className="p-2">
-      <section className="product_class_container">
+      <section className="product_className_container">
         <div>
           <div>
             <a href="">
@@ -22,10 +23,11 @@ function Product({
                 <div className="flex w-full relative aspect-[2/3] image_container">
                   <figure className="flex">
                     <img
-                      className="object-cover"
+                      className="object-cover relative"
                       src={product__image}
                       alt={product__name}
                     />
+                    <BestSeller />
                   </figure>
                 </div>
               </div>
