@@ -9,6 +9,7 @@ import BrandStory from "../layouts/Home/BrandStory";
 import LatestItems from "../layouts/Home/LatestItems";
 import TravelHoodie from "../layouts/Home/TravelHoodie";
 import BestSellers from "../layouts/Home/BestSellers";
+import Footer from "../layouts/Footer";
 
 function Home() {
   return (
@@ -23,6 +24,7 @@ function Home() {
       <LatestItems />
       <TravelHoodie />
       <BestSellers />
+      <Footer />
     </>
   );
 }
