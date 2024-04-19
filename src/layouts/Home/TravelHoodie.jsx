@@ -10,7 +10,7 @@ function TravelHoodie() {
           className="w-full"
         />
       </section>
-      <div className="flex flex-col items-center px-24 py-14 bg-[#E9EAF0]">
+      <div className="flex flex-col items-center px-12 lg:px-24 py-14 bg-[#E9EAF0]">
         <section className="">
           <img
             width="1942"
@@ -20,11 +20,11 @@ function TravelHoodie() {
             className="w-full"
           />
         </section>
-        <section className="flex flex-row gap-10">
-          <button className="border-2 rounded-full bg-blue-950 px-24 py-3">
+        <section className="flex flex-col lg:flex-row gap-5 lg:gap-10">
+          <button className="order-last lg:order-first border-2 rounded-full bg-blue-950 py-2 lg:px-24 lg:py-3">
             <span className="font-semi-bold text-white">Explore More</span>
           </button>
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center items-center">
             <section className="flex flex-row gap-2">
               <span className="text-xl font-bold">₹2499</span>
               <span className="text-lg font-bold text-green-700">50% off</span>

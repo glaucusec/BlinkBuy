@@ -14,7 +14,7 @@ function BestSellers() {
           Don't miss out Top Selling styles
         </p>
       </div>
-      <div className="grid grid-rows-2 grid-cols-4 ">
+      <div className="grid grid-rows-2 grid-cols-2 lg:grid-cols-4">
         {bestSellerProducts.map((p, index) => {
           return (
             <Product

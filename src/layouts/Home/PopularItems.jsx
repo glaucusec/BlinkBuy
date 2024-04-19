@@ -1,11 +1,45 @@
-import React from "react";
-import item1 from '../../assets/images/popular-items/item1.webp'
-import item2 from '../../assets/images/popular-items/item2.webp'
-import item3 from '../../assets/images/popular-items/item3.webp'
-import item4 from '../../assets/images/popular-items/item4.webp'
+import React, { useState } from "react";
+import Slider from "react-slick";
 
+import LeftButton from "../../components/Button/LeftButton";
+import RightButton from "../../components/Button/RightButton";
+
+import RightArrowIcon from "../../components/icons/RightArrowIcon";
+
+import images from "../../data/PopularItemsData";
+import PopularItemCard from "../../components/Cards/PopularItemCard";
 
 function PopularItems() {
+  const [sliderRef, setSliderRef] = useState(null);
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    speed: 200,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          swipeToSlide: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          swipeToSlide: true,
+        },
+      },
+    ],
+  };
+
   return (
     <div className="popular-items container mx-auto my-16">
       <div
@@ -15,44 +49,48 @@ function PopularItems() {
         <h2 className="text-2xl font-bold">Most Popular</h2>
         <p className="flex justify-center items-center text-lg text-gray-500">
           Check out now
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-            />
-          </svg>
+          <RightArrowIcon />
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-6 py-4">
+      {/* For screen sizes 'lg' or more */}
+      <div className="hidden lg:grid grid-cols-4 gap-6 py-4">
         <div className="rounded-lg overflow-hidden">
           <img
-            src={item1}
+            src="https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/popular-items/item1.webp"
             alt="Fashion Joggers"
           />
         </div>
         <div className="rounded-lg overflow-hidden">
           <img
-            src={item2}
+            src="https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/popular-items/item2.webp"
             alt="Summer Co-Ords"
           />
         </div>
         <div className="rounded-lg overflow-hidden">
           <img
-            src={item3}
+            src="https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/popular-items/item3.webp"
             alt="Oversized T-Shirts"
           />
         </div>
         <div className="rounded-lg overflow-hidden">
-          <img src={item4} />
+          <img src="https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/popular-items/item4.webp" />
         </div>
+      </div>
+      {/* For screen sizes 'sm' to 'lg' (excluding 'lg') */}
+      <div className="lg:hidden relative">
+        <LeftButton clickAction={sliderRef?.slickPrev} />
+        <RightButton clickAction={sliderRef?.slickNext} />
+        <Slider ref={setSliderRef} {...settings}>
+          {images.map((image, index, arr) => {
+            return (
+              <PopularItemCard
+                key={image.image__id}
+                image__url={image.image__url}
+                image__alt__text={image.image__alt__text}
+              />
+            );
+          })}
+        </Slider>
       </div>
     </div>
   );
