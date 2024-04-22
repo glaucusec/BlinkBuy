@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import "animate.css";
 
-import InstagramIcon from "../components/icons/InstagramIcon";
-import FacebookIcons from "../components/icons/FacebookIcon";
-import WhatsappIcon from "../components/icons/WhatsappIcon";
-import ChevronDownIcon from "../components/icons/ChevronDownIcon";
-import ChevronUpIcon from "../components/icons/ChevronUpIcon";
+import InstagramIcon from "../../components/icons/InstagramIcon";
+import FacebookIcons from "../../components/icons/FacebookIcon";
+import WhatsappIcon from "../../components/icons/WhatsappIcon";
+import ChevronDownIcon from "../../components/icons/ChevronDownIcon";
+import ChevronUpIcon from "../../components/icons/ChevronUpIcon";
 
 function Footer() {
   const [showCategory, setShowCategory] = useState(false);
