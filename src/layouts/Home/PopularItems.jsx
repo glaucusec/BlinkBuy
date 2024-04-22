@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Slider from "react-slick";
 
@@ -41,7 +43,7 @@ function PopularItems() {
   };
 
   return (
-    <div className="popular-items container mx-auto my-16">
+    <div className="popular-item my-12 mx-2">
       <div
         id="popular-item-header"
         className="flex flex-col justify-center items-center"

@@ -1,20 +1,23 @@
 import React from "react";
+import Image from "next/image";
 
 function TravelHoodie() {
   return (
     <div className="m">
       <section>
-        <img
+        <Image
           src="https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/about-us/TRAVEL_HOODIE_2000_x_521_px.webp?t=2024-04-15T07%3A49%3A00.465Z"
           alt="Travel Hoodie"
           className="w-full"
+          height={640}
+          width={166.825}
         />
       </section>
       <div className="flex flex-col items-center px-12 lg:px-24 py-14 bg-[#E9EAF0]">
         <section className="">
-          <img
-            width="1942"
-            height="541"
+          <Image
+            width={544}
+            height={165.375}
             src="https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/assests/images/about-us/TravelHoodieSpecs.webp?t=2024-04-15T07%3A52%3A24.222Z"
             alt="Travel Hoodie"
             className="w-full"

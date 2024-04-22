@@ -11,22 +11,24 @@ import TravelHoodie from "../layouts/Home/TravelHoodie";
 import BestSellers from "../layouts/Home/BestSellers";
 import Footer from "../layouts/Footer";
 
-function Home() {
+function HomePage() {
   return (
     <>
       <ScrollingText />
       <Header />
-      <PrimaryBanner />
-      <PopularItems />
-      <Men />
-      <Women />
-      <BrandStory />
+      <div className="container mx-auto overflow-x-hidden">
+        <PrimaryBanner />
+        <PopularItems />
+        <Men />
+        <Women />
+        <BrandStory />
       <LatestItems />
       <TravelHoodie />
       <BestSellers />
       <Footer />
+      </div>
     </>
   );
 }
 
-export default Home;
+export default HomePage;

@@ -1,3 +1,5 @@
+"use client";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -5,10 +7,10 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 
 import Product from "../../components/Product";
-
-import products from "../../data/LatestItemsData";
 import LeftButton from "../../components/Button/LeftButton";
 import RightButton from "../../components/Button/RightButton";
+
+import products from "../../data/LatestItemsData";
 
 function LatestItems() {
   const [sliderRef, setSliderRef] = useState(null);
@@ -48,10 +50,10 @@ function LatestItems() {
     ],
   };
   return (
-    <div className="latest-items container mx-auto">
+    <div className="latest-items">
       <div
         id="latest-item-header"
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center pb-12"
       >
         <h2 className="text-2xl font-bold">See the Latest</h2>
         <p className="flex justify-center items-center text-lg text-gray-500">

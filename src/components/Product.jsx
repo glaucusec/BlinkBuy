@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import calculateDiscountPercentage from "../services/PercentageCalculator";
+import { calculateDiscountPercentage } from "../lib/percentage";
 import BestSeller from "./Badge/BestSeller";
 
 function Product({

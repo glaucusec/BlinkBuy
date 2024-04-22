@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/images/logo.svg";
+import Image from "next/image";
 
 function Header() {
   return (
@@ -23,7 +23,7 @@ function Header() {
       <div className="top-0 z-10">
         <ol className="flex justify-around items-center">
           <a href="#" className="h-8 w-12">
-            <img src={logo} alt="Website Logo" />
+            <Image src='/logo.svg' alt="Website Logo" height={32} width={48} />
           </a>
           <a href="#" className="font-bold hidden lg:block">
             Men

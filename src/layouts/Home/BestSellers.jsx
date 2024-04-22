@@ -4,7 +4,7 @@ import Product from "../../components/Product";
 
 function BestSellers() {
   return (
-    <div className="latest-items container mx-auto mt-16">
+    <div className="latest-items mt-16">
       <div
         id="latest-item-header"
         className="flex flex-col justify-center items-center"

@@ -1,10 +1,15 @@
 import React from "react";
-import brandStory from "../../assets/images/about-us/brand_story.webp";
+import Image from "next/image";
 
 function BrandStory() {
   return (
     <div className="my-16">
-      <img src={brandStory} alt="Our Story" className="w-full" />
+      <Image
+        src={`/about-us/brand_story.webp`}
+        alt="Our Story"
+        className="w-full"
+        width={1024} height={266.925}
+      />
     </div>
   );
 }

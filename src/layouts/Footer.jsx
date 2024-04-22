@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import "animate.css";
 
@@ -162,7 +164,7 @@ function Footer() {
         </div>
 
         {/* copyright */}
-        <div className="py-4 lg:py-16 px-8 lg:px-32">
+        <div className="py-4 lg:py-12 px-8 lg:px-32">
           <span className="text-white text-xs">
             © 2023 NOBERO. All Rights Reserved by Pratyaya E-commerce Pvt. Ltd.
           </span>

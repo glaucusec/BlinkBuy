@@ -1,7 +1,10 @@
+"use client";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Slider from "react-slick";
 
 import LeftButton from "../../components/Button/LeftButton";
@@ -18,13 +21,9 @@ function PrimaryBanner() {
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
-    cssEase: "linear",
   };
   return (
-    <div
-      id="primary-banner-section"
-      className="pt-4 relative container mx-auto"
-    >
+    <div id="primary-banner-section" className="my-4 relative ">
       <LeftButton clickAction={sliderRef?.slickPrev} />
       <RightButton clickAction={sliderRef?.slickNext} />
 
@@ -32,10 +31,12 @@ function PrimaryBanner() {
         {images.map((img, index) => {
           return (
             <div key={img.image__id}>
-              <img
+              <Image
                 src={img.image__url}
                 alt="Banner Image 2"
                 className="w-full"
+                width={400}
+                height={100}
               />
             </div>
           );
