@@ -1,6 +1,6 @@
 import React from "react";
 
-function RightButton({ clickAction }) {
+function NextButton({ clickAction }) {
   return (
     <button
       onClick={clickAction}
@@ -24,4 +24,4 @@ function RightButton({ clickAction }) {
   );
 }
 
-export default RightButton;
+export default NextButton;

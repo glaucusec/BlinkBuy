@@ -1,6 +1,6 @@
 import React from "react";
 
-function LeftButton({ clickAction }) {
+function PrevButton({ clickAction }) {
   return (
     <button
       onClick={clickAction}
@@ -24,4 +24,4 @@ function LeftButton({ clickAction }) {
   );
 }
 
-export default LeftButton;
+export default PrevButton;

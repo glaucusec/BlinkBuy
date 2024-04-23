@@ -7,8 +7,8 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 
 import Product from "../../components/Product";
-import LeftButton from "../../components/Button/LeftButton";
-import RightButton from "../../components/Button/RightButton";
+import LeftButton from "../../components/Button/PrevButton";
+import RightButton from "../../components/Button/NextButton";
 
 import products from "../../data/LatestItemsData";
 
