@@ -5,7 +5,7 @@ import AngleNextIcon from "../../../components/icons/AngleNextIcon";
 function WomensHoverMenu() {
   return (
     <React.Fragment>
-      <div className="invisible absolute font-semibold top-16 left-0 w-full bg-white group-hover:visible z-20">
+      <div className="invisible absolute font-semibold top-16 left-0 w-full bg-white shadow-2xl group-hover:visible z-20">
         <section className="grid grid-cols-[4fr_2fr] lg:gap-24 xl:gap-44 px-10 ">
           <div className="grid grid-cols-4 xl:grid-cols-5 justify-self-auto py-8">
             <div className="flex flex-col justify-center items-center gap-4">

@@ -66,7 +66,7 @@ function Footer() {
   );
 
   return (
-    <div className="bg-[#242f66]">
+    <div className="bg-blinkblue">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col lg:flex-row lg:justify-between text-white py-4 lg:py-16 px-8 lg:px-32 ">
           <div className="section-1 mt-8 lg:mt-0">

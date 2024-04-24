@@ -17,6 +17,9 @@ module.exports = {
       fontSize: {
         xxs: ["0.65rem", "14px"],
       },
+      colors: {
+        blinkblue: "#242f66",
+      },
     },
   },
 };
