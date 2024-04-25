@@ -34,7 +34,7 @@ function Product({
                 </div>
               </div>
               <section className="product_info flex flex-col pt-2">
-                <h3 className="font-semibold text-base overflow-hidden whitespace-nowrap max-w-[18ch] lg:max-w-[24ch] xl:max-w-[26ch] text-ellipsis">
+                <h3 className="font-medium text-base overflow-hidden whitespace-nowrap max-w-[18ch] lg:max-w-[24ch] xl:max-w-[26ch] text-ellipsis">
                   {product__name}
                 </h3>
                 <article className="product_price">

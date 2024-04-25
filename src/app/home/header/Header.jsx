@@ -1,3 +1,5 @@
+// "use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +10,7 @@ import {
   IconShoppingBag,
 } from "@tabler/icons-react";
 
+import Search from "./Search";
 import MensHoverMenu from "./MensHoverMenu";
 import WomensHoverMenu from "./WomenHoverMenu";
 
@@ -56,20 +59,16 @@ function Header() {
       {/* Grid #3 */}
       <div className="cart-user-menu flex items-center justify-end">
         <ol className="flex flex-row items-center justify-center">
-          <li className="xl:border-2 border-solid">
-            <div className="flex p-1">
+          <li className="md:border-2 border-solid md:max-w-[200px] lg:max-w-full">
+            <div className="grid grid-flow-col gap-2 p-1 ">
               <IconSearch />
-              <input
-                type="text"
-                className="border-none focus:outline-none hidden xl:block"
-                placeholder="Search..."
-              />
+              <Search />
             </div>
           </li>
-          <li className="pl-4 hidden md:block">
+          <li className="px-2 hidden md:block">
             <IconUser stroke={2} />
           </li>
-          <li className="pl-4">
+          <li className="px-2">
             <IconShoppingBag stroke={2} />
           </li>
         </ol>
