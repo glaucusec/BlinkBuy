@@ -4,8 +4,8 @@ import Product from "../../../components/Product";
 
 function SearchPageProductGrid() {
   return (
-    <div className="search-products-container">
-      <div className="search-products-grid grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <div className="search-products-container max-h-screen overflow-y-scroll no-scrollbar">
+      <div className="search-products-grid grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-4">
         {products.map((p) => {
           return (
             <Product

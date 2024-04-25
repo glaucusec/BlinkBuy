@@ -56,12 +56,12 @@ function LatestItems() {
         className="flex flex-col justify-center items-center pb-12"
       >
         <h2 className="text-2xl font-bold">See the Latest</h2>
-        <p className="flex justify-center items-center text-lg text-gray-500">
+        <p className="head flex justify-center items-center text-lg text-gray-500">
           Handpicked for you
         </p>
       </div>
 
-      <div className="latest-items-wrapper  relative">
+      <div className="latest-items-wrapper relative">
         <LeftButton clickAction={sliderRef?.slickPrev} />
         <RightButton clickAction={sliderRef?.slickNext} />
 
@@ -75,6 +75,7 @@ function LatestItems() {
                 product__regular={p.product__regular}
                 product__sale={p.product__sale}
                 product__at__lowest={p.product__at__lowest}
+                padding={true}
               />
             );
           })}

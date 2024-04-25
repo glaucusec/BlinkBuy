@@ -10,13 +10,14 @@ function Product({
   product__regular,
   product__sale,
   product__at__lowest,
+  padding,
 }) {
   const product__discountPercentage = Math.round(
     calculateDiscountPercentage(product__sale, product__regular)
   );
 
   return (
-    <div className="p-2">
+    <div className={padding ? "p-2" : ""}>
       <section className="product_className_container">
         <div>
           <div>
