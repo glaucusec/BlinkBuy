@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 
 export default function Search() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -18,16 +20,21 @@ export default function Search() {
   //   },
   //   [searchParams]
   // );
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm == "") {
+        router.push("/");
+      }
+      if (searchTerm !== "") {
+        router.push(`/search?q=${searchTerm}`);
+      }
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, router]);
 
   const searchInputChangeHandler = (e) => {
-    const term = e.target.value;
-
-    if (pathname !== "/search") {
-      router.push("/search");
-    }
-    if (term === "") {
-      router.push("/");
-    }
+    setSearchTerm(e.target.value);
   };
 
   return (
