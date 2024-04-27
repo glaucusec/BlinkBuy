@@ -10,9 +10,8 @@ const radioOptions = [
   "Price High to Low",
 ];
 
-function SortByButton() {
+function SortBy() {
   const [showOption, setShowOption] = useState(false);
-  console.log(showOption);
 
   return (
     <React.Fragment>
@@ -30,72 +29,72 @@ function SortByButton() {
       <div
         className={`${
           showOption ? "" : "hidden"
-        } absolute w-auto z-30 border rounded-xl p-5 bg-white shadow-2xl transition duration-0 hover:duration-150`}
+        } absolute w-auto z-30 border rounded-xl p-5 bg-white shadow-2xl`}
       >
         <ul>
-          <li class="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
-            <div class="flex items-center ps-1">
+          <li className="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
+            <div className="flex items-center ps-1">
               <input
                 id="list-radio-featured"
                 type="radio"
                 value=""
                 name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
               />
               <label
-                for="list-radio-featured"
-                class="w-full py-3 ms-2 text-sm font-medium "
+                htmlFor="list-radio-featured"
+                className="w-full py-3 ms-2 text-sm font-medium "
               >
                 Featured
               </label>
             </div>
           </li>
-          <li class="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
-            <div class="flex items-center ps-1">
+          <li className="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
+            <div className="flex items-center ps-1">
               <input
                 id="list-radio-new-arrivals"
                 type="radio"
                 value=""
                 name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
               />
               <label
-                for="list-radio-new-arrivals"
-                class="w-full py-3 ms-2 text-sm font-medium "
+                htmlFor="list-radio-new-arrivals"
+                className="w-full py-3 ms-2 text-sm font-medium "
               >
                 New Arrivals
               </label>
             </div>
           </li>
-          <li class="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
-            <div class="flex items-center ps-1">
+          <li className="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
+            <div className="flex items-center ps-1">
               <input
                 id="list-radio-low-to-high"
                 type="radio"
                 value=""
                 name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
               />
               <label
-                for="list-radio-low-to-high"
-                class="w-full py-3 ms-2 text-sm font-medium "
+                htmlFor="list-radio-low-to-high"
+                className="w-full py-3 ms-2 text-sm font-medium "
               >
                 Price Low to High
               </label>
             </div>
           </li>
-          <li class="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
-            <div class="flex items-center ps-1">
+          <li className="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">
+            <div className="flex items-center ps-1">
               <input
                 id="list-radio-high-to-low"
                 type="radio"
                 value=""
                 name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
               />
               <label
-                for="list-radio-high-to-low"
-                class="w-full py-3 ms-2 text-sm font-medium "
+                htmlFor="list-radio-high-to-low"
+                className="w-full py-3 ms-2 text-sm font-medium "
               >
                 Price High to Low
               </label>
@@ -107,4 +106,4 @@ function SortByButton() {
   );
 }
 
-export default SortByButton;
+export default SortBy;

@@ -22,16 +22,11 @@ export default function Search() {
   // );
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (searchTerm == "") {
-        router.push("/");
-      }
-      if (searchTerm !== "") {
-        router.push(`/search?q=${searchTerm}`);
-      }
+      router.push(`/search?q=${searchTerm}`);
     }, 300);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm, router]);
+  }, [searchTerm]);
 
   const searchInputChangeHandler = (e) => {
     setSearchTerm(e.target.value);
@@ -43,7 +38,7 @@ export default function Search() {
       type="text"
       className="md:max-w-[100px] lg:max-w-full border-none focus:outline-none hidden md:block"
       placeholder="Search..."
-      defaultValue={searchParams.get("query")?.toString()}
+      value={searchTerm}
     />
   );
 }
