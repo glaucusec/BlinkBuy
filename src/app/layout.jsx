@@ -1,8 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { QueryProvider } from "../context/QueryContext";
+
 import ScrollingText from "./home/ScrollingText";
-import Header from "./home/header/Header";
+import Header from "../components/header/Header";
 import Footer from "./home/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,10 +17,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ScrollingText />
-        <Header />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <ScrollingText />
+          <Header />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

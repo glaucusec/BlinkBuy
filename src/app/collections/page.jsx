@@ -1,7 +1,7 @@
 import React, { cloneElement } from "react";
 import Image from "next/image";
 import collectionsData from "../../data/CollectionsPageData";
-import CollectionCard from "../../components/Cards/CollectionCard";
+import CollectionCard from "../../components/cards/CollectionCard";
 
 function CollectionPage() {
   return (

@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 
-import LeftButton from "../../components/Button/PrevButton";
-import RightButton from "../../components/Button/NextButton";
+import LeftButton from "../../components/buttons/PrevButton";
+import RightButton from "../../components/buttons/NextButton";
 
 import RightArrowIcon from "../../components/icons/RightArrowIcon";
 
 import images from "../../data/PopularItemsData";
-import PopularItemCard from "../../components/Cards/PopularItemCard";
+import PopularItemCard from "../../components/cards/PopularItemCard";
 
 function PopularItems() {
   const [sliderRef, setSliderRef] = useState(null);

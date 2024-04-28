@@ -1,16 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
-import RadioButton from "../../../components/Forms/RadioButton";
+import React, { useEffect, useState, useContext } from "react";
+import RadioButton from "../../../components/forms/RadioButton";
 import FilterSubHeading from "./FilterSubHeading";
-import CheckBox from "../../../components/Forms/CheckBox";
+import CheckBox from "../../../components/forms/CheckBox";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { QueryContext } from "../../../context/QueryContext";
 
 let priceRanges = [
-  { id: "#1", labelText: "Less Than ₹500", query: "<500" },
+  { id: "#1", labelText: "Less Than ₹500", query: "0-500" },
   { id: "#2", labelText: "₹ 501 - ₹ 1,000", query: "50-1000" },
   { id: "#3", labelText: "₹ 1,001 - ₹ 1,500", query: "1001-1500" },
   { id: "#4", labelText: "₹ 1,501 - ₹ 2,000", query: "1501-2000" },
-  { id: "#5", labelText: "More Than ₹2000", query: ">2000" },
+  { id: "#5", labelText: "More Than ₹2000", query: "2000-" },
 ];
 
 let colors = [
@@ -35,11 +38,18 @@ let sizes = [
 ];
 
 function SearchPageFilter({}) {
+  const router = useRouter();
+  const query = useContext(QueryContext).query;
+  const searchParams = useSearchParams();
+
+  const splitQueryParam = (param) => (param ? param.split(",") : []);
+
   const [queryParams, setQueryParams] = useState({
-    colors: [],
-    priceRanges: [],
-    sizes: [],
-    availability: [],
+    q: query,
+    priceRanges: splitQueryParam(searchParams.get("priceRanges")),
+    colors: splitQueryParam(searchParams.get("colors")),
+    sizes: splitQueryParam(searchParams.get("sizes")),
+    availability: splitQueryParam(searchParams.get("availability")),
   });
 
   const handleFilterChange = (filterType, value) => {
@@ -51,11 +61,31 @@ function SearchPageFilter({}) {
     }));
   };
 
-  const isChecked = (filterType, value) => {
-    return queryParams[filterType].includes(value);
-  };
+  const isChecked = (filterType, value) =>
+    queryParams[filterType].includes(value);
 
-  console.log(queryParams);
+  useEffect(() => {
+    const nonEmptyParams = Object.entries(queryParams)
+      .filter(([key, value]) => value.length > 0 || key == "q")
+      .reduce((acc, [key, value]) => {
+        if (key == "q") {
+          acc[key] = value;
+        } else {
+          acc[key] = value.join(",");
+        }
+        return acc;
+      }, {});
+
+    const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
+    router.push(`/search?${newSearchParams}`);
+  }, [queryParams, router]);
+
+  useEffect(() => {
+    setQueryParams((prevParams) => ({
+      ...prevParams,
+      q: query,
+    }));
+  }, [query]);
 
   return (
     <div className="filter-wrapper max-h-screen overflow-y-scroll no-scrollbar">
