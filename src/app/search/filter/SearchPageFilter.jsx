@@ -39,13 +39,13 @@ let sizes = [
 
 function SearchPageFilter({}) {
   const router = useRouter();
-  const query = useContext(QueryContext).query;
   const searchParams = useSearchParams();
+
+  const query = useContext(QueryContext).query;
 
   const splitQueryParam = (param) => (param ? param.split(",") : []);
 
   const [queryParams, setQueryParams] = useState({
-    q: query,
     priceRanges: splitQueryParam(searchParams.get("priceRanges")),
     colors: splitQueryParam(searchParams.get("colors")),
     sizes: splitQueryParam(searchParams.get("sizes")),
@@ -66,26 +66,18 @@ function SearchPageFilter({}) {
 
   useEffect(() => {
     const nonEmptyParams = Object.entries(queryParams)
-      .filter(([key, value]) => value.length > 0 || key == "q")
-      .reduce((acc, [key, value]) => {
-        if (key == "q") {
-          acc[key] = value;
-        } else {
+      .filter(([key, value]) => value.length > 0)
+      .reduce(
+        (acc, [key, value]) => {
           acc[key] = value.join(",");
-        }
-        return acc;
-      }, {});
+          return acc;
+        },
+        { q: query } // default object, url will have query as the first parameter
+      );
 
     const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
-    router.push(`/search?${newSearchParams}`);
-  }, [queryParams, router]);
-
-  useEffect(() => {
-    setQueryParams((prevParams) => ({
-      ...prevParams,
-      q: query,
-    }));
-  }, [query]);
+    router.push(`/search?${newSearchParams}`, "", { scroll: false });
+  }, [queryParams, router, query]);
 
   return (
     <div className="filter-wrapper max-h-screen overflow-y-scroll no-scrollbar">

@@ -8,7 +8,7 @@ export const QueryContext = createContext("");
 export function QueryProvider(props) {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
-
+  
   const queryChangeHandler = (newQuery) => {
     setQuery(newQuery);
   };
