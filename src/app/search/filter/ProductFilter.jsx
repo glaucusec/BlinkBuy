@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import RadioButton from "../../../components/forms/RadioButton";
 import FilterSubHeading from "./FilterSubHeading";
 import CheckBox from "../../../components/forms/CheckBox";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { QueryContext } from "../../../context/QueryContext";
 
@@ -39,30 +38,43 @@ let sizes = [
 
 function SearchPageFilter({}) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const query = useContext(QueryContext).query;
-
-  const splitQueryParam = (param) => (param ? param.split(",") : []);
-
-  const [queryParams, setQueryParams] = useState({
-    priceRanges: splitQueryParam(searchParams.get("priceRanges")),
-    colors: splitQueryParam(searchParams.get("colors")),
-    sizes: splitQueryParam(searchParams.get("sizes")),
-    availability: splitQueryParam(searchParams.get("availability")),
-  });
+  const {
+    query,
+    queryParams,
+    queryParamsChangeHandler,
+    setProducts,
+    setLoading,
+  } = useContext(QueryContext);
 
   const handleFilterChange = (filterType, value) => {
-    setQueryParams((prevState) => ({
-      ...prevState,
-      [filterType]: prevState[filterType].includes(value)
-        ? prevState[filterType].filter((item) => item != value)
-        : [...prevState[filterType], value],
-    }));
+    queryParamsChangeHandler(filterType, value);
   };
 
   const isChecked = (filterType, value) =>
     queryParams[filterType].includes(value);
+
+  // GraphQL Query and Fetch API Options
+  const graphqQuery = `
+    query {
+      products(q: "${query}") {
+        id
+        title
+        discountedPrice
+        reviewsAverage
+        reviewsCount
+        price
+        isActive
+      }
+    }`;
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query: graphqQuery }),
+  };
 
   useEffect(() => {
     const nonEmptyParams = Object.entries(queryParams)
@@ -77,6 +89,24 @@ function SearchPageFilter({}) {
 
     const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
     router.push(`/search?${newSearchParams}`, "", { scroll: false });
+
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await fetch("/api/graphql", requestOptions);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const responseJson = await response.json();
+        const data = await responseJson.data;
+        setProducts(data.products);
+        setLoading(false);
+      } catch (err) {
+        console.error("There was a problem with the GraphQL request:", err);
+      }
+    }
+
+    fetchData();
   }, [queryParams, router, query]);
 
   return (

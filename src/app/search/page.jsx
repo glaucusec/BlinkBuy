@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import SearchPageProductGrid from "./filter/SearchPageProductGrid";
+import SearchPageProductGrid from "./filter/ProductGrid";
 import SortBy from "./filter/SortBy";
 
-import SearchPageFilter from "./filter/SearchPageFilter";
+import SearchPageFilter from "./filter/ProductFilter";
 
 function SearchPage({ searchParams }) {
-  const [products, setProducts] = useState([]);
-
   return (
     <div className="search-container">
       <div className="flex flex-row justify-between items-center py-4">

@@ -3,13 +3,6 @@
 import React, { useState } from "react";
 import { IconFilter } from "@tabler/icons-react";
 
-const radioOptions = [
-  "Featured",
-  "New Arrivals",
-  "Price Low to High",
-  "Price High to Low",
-];
-
 function SortBy() {
   const [showOption, setShowOption] = useState(false);
 
@@ -17,7 +10,7 @@ function SortBy() {
     <React.Fragment>
       <span
         onClick={() => setShowOption((prev) => !prev)}
-        className="cursor-pointer border border-gray-500 flex flex-row justify-center items-center gap-1 px-2 py-1"
+        className="cursor-pointer border border-gray-300 flex flex-row justify-center items-center gap-1 px-2 py-1"
       >
         <IconFilter />
         <span className="text-gray-600">Sort By: </span>
