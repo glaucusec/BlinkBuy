@@ -16,6 +16,7 @@ const schema = createSchema({
       reviewsCount: Int,
       price: Float,
       isActive: Boolean,
+      images: [String]
     }
 
     type Product {
@@ -27,12 +28,25 @@ const schema = createSchema({
       price: Float,
       isActive: Boolean,
     }
+
   `,
   resolvers: {
     Query: {
       products: async (_, { q }) => {
-        console.log(q);
-        return await prisma.product.findMany();
+        const products = await prisma.product.findMany({
+          include: {
+            images: {
+              select: {
+                url: true,
+              },
+            },
+          },
+        });
+        const formattedProducts = products.map((product) => {
+          const formattedUrls = product.images.map((image) => image.url);
+          return { ...product, images: formattedUrls };
+        });
+        return formattedProducts;
       },
       product: async (_, { id }) =>
         await prisma.product.findUnique({

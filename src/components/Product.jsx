@@ -10,6 +10,7 @@ function Product({
   product__regular,
   product__sale,
   product__at__lowest,
+  bestseller,
   padding,
 }) {
   const product__discountPercentage = Math.round(
@@ -29,7 +30,7 @@ function Product({
                     src={product__image}
                     alt={product__name}
                   />
-                  <BestSeller />
+                  {bestseller && <BestSeller />}
                 </figure>
               </div>
             </div>

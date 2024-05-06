@@ -6,6 +6,7 @@ import FilterSubHeading from "./FilterSubHeading";
 import CheckBox from "../../../components/forms/CheckBox";
 import { useRouter } from "next/navigation";
 import { QueryContext } from "../../../context/QueryContext";
+import SizeButton from "../../../components/buttons/SizeButton";
 
 let priceRanges = [
   { id: "#1", labelText: "Less Than ₹500", query: "0-500" },
@@ -65,6 +66,7 @@ function SearchPageFilter({}) {
         reviewsCount
         price
         isActive
+        images 
       }
     }`;
 
@@ -154,13 +156,16 @@ function SearchPageFilter({}) {
         <div className="filter-sizes py-4 border-b border-b-gray-200">
           <FilterSubHeading heading={"Sizes"} />
           <div className="filter-size-buttons">
-            <ul className="filter-size-list">
+            <ul className="filter-size-list grid gap-2  md:grid-cols-3 lg:grid-cols-4">
               {sizes.map((size) => (
-                <li key={size.id} className="filter-size-item">
-                  <CheckBox
-                    labelText={size.labelText}
+                <li
+                  key={size.id}
+                  className="filter-size-item flex items-center justify-center"
+                >
+                  <SizeButton
+                    size={size.labelText}
                     checked={isChecked("sizes", size.query)}
-                    onChange={() => handleFilterChange("sizes", size.query)}
+                    onClick={() => handleFilterChange("sizes", size.query)}
                   />
                 </li>
               ))}

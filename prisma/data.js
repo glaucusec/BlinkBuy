@@ -1,4 +1,4 @@
-export const mens_joggers = [
+const mens_joggers = [
   {
     title: "Oversized Jackson Joggers",
     discountedPrice: 999,
@@ -944,13 +944,14 @@ export const mens_joggers = [
   },
 ];
 
-export const co_ords = [
+const co_ords = [
   {
     title: "Oversized Cooper Utility Co-Ord",
     discountedPrice: 1599,
     price: 3199,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: ["Navy Blue"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-24at3.59.09PM.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-24at2.59.05PM.webp",
@@ -995,6 +996,7 @@ export const co_ords = [
     price: 3199,
     reviewsAverage: 4.6,
     reviewsCount: 55,
+    colors: ["Olive Green"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/1647565150024f34cac337e8f3d58da86854ad9778.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/1647565145e111ca632277aa8dbc7d41d1f9e84e4b.webp",
@@ -1046,6 +1048,7 @@ export const co_ords = [
     price: 2599,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: ["Navy Blue"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-05at4.00.02PM_5_5671e43b-2d0f-4534-a0ee-de9364fff027.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-05at4.00.02PM_6_42338ec0-d15e-406b-9365-51b631a97ff1.webp",
@@ -1093,6 +1096,7 @@ export const co_ords = [
     price: 3799,
     reviewsAverage: 5.0,
     reviewsCount: 1,
+    colors: ["White, Grey"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/8_121ba356-b882-4ea5-acc1-ef708598e644.jpg",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/6_46a1ade4-3715-4f46-a265-5bc23c94a7e9.webp",
@@ -1141,6 +1145,7 @@ export const co_ords = [
     price: 2599,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: null,
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-24at12.48.43PM_1%20(1).webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-24at12.48.43PM_1.webp",
@@ -1184,6 +1189,7 @@ export const co_ords = [
     price: 2999,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: ["Olive Green"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-24at3.59.09PM_a084995a-759d-4b22-a6a1-53a80a09e9f1.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/WhatsAppImage2024-04-24at2.59.05PM_0c757c63-da19-4497-928f-a4dd107b8ad4.webp",
@@ -1224,11 +1230,12 @@ export const co_ords = [
     sizes: ["S", "M", "L", "XL", "XXL"],
   },
   {
-    title: "Roger Men's Co-Ord Sets   ",
+    title: "Roger Men's Co-Ord Sets",
     discountedPrice: 1599,
     price: 2999,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: ["Navy"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/IA00729509-M-1-092421-IS2-1-4M_625x_c62f9d8e-b68d-4629-88ca-f1b0a202502c.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/Roger-1.webp",
@@ -1277,6 +1284,7 @@ export const co_ords = [
     price: 3199,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: ["Maroon"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/4_0a0a6d1a-5b78-4f02-b0bc-a22196344f21.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/2_7e2f9e6a-04a1-4c89-bfd7-f5906ee52db5.webp",
@@ -1321,6 +1329,7 @@ export const co_ords = [
     price: 3999,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: null,
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/07-0802.jpg",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/1_7_13754903-b2d7-407c-b739-716f6ff31164.webp",
@@ -1369,6 +1378,7 @@ export const co_ords = [
     price: 2999,
     reviewsAverage: null,
     reviewsCount: null,
+    colors: ["Powder Blue"],
     images: [
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/6_d5a62ffd-51dd-4109-8c14-39954328a9bb.webp",
       "https://peqwlppfbyknhzenqdpb.supabase.co/storage/v1/object/public/products/5_79f8caf6-8702-498d-a890-7c8714fb4c4d.webp",
@@ -1408,3 +1418,5 @@ export const co_ords = [
     sizes: ["S", "M", "L", "XL", "XXL"],
   },
 ];
+
+module.exports = { mens_joggers, co_ords };

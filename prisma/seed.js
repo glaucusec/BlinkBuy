@@ -1,12 +1,17 @@
-import { PrismaClient } from "@prisma/client";
-import { mens_joggers } from "./data.js";
-import { co_ords } from "./data.js";
+const { PrismaClient } = require("@prisma/client");
+const { mens_joggers, co_ords } = require("./data.js");
 
+// https://github.com/prisma/prisma/discussions/2222
 const prisma = new PrismaClient();
 
-export async function main() {
+async function main() {
+  seedToDatabase(mens_joggers);
+  seedToDatabase(co_ords);
+}
+
+async function seedToDatabase(arr) {
   try {
-    console.log("Starting seeding of database...");
+    console.log("Starting seeding to database...");
     // Delete any data; if exists
     await prisma.color.deleteMany();
     await prisma.tag.deleteMany();
@@ -15,7 +20,7 @@ export async function main() {
     await prisma.product.deleteMany();
 
     // Loop through product data and insert each of them.
-    for (let p of mens_joggers) {
+    for (let p of arr) {
       const product = await prisma.product.create({
         data: {
           title: p.title,
@@ -49,22 +54,24 @@ export async function main() {
         });
       }
       // colors =><= size(m-n) relationship
-      for (let c of p.colors) {
-        let colorId = null;
-        const color = await prisma.color.findFirst({ where: { name: c } });
-        colorId = color ? color.id : "";
+      if (p.colors && p.colors != null) {
+        for (let c of p.colors) {
+          let colorId = null;
+          const color = await prisma.color.findFirst({ where: { name: c } });
+          colorId = color ? color.id : "";
 
-        await prisma.product.update({
-          where: { id: productId },
-          data: {
-            colors: {
-              connectOrCreate: {
-                where: { id: colorId },
-                create: { name: c },
+          await prisma.product.update({
+            where: { id: productId },
+            data: {
+              colors: {
+                connectOrCreate: {
+                  where: { id: colorId },
+                  create: { name: c },
+                },
               },
             },
-          },
-        });
+          });
+        }
       }
 
       // tags =><= size(m-n) relationship

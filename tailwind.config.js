@@ -34,6 +34,7 @@ module.exports = {
       },
       colors: {
         blinkblue: "#242f66",
+        blinkSizeBtn: "#faf6e8",
       },
     },
   },

@@ -76,6 +76,7 @@ function LatestItems() {
                 product__sale={p.product__sale}
                 product__at__lowest={p.product__at__lowest}
                 padding={true}
+                bestseller={true}
               />
             );
           })}
