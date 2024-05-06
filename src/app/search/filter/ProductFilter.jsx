@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useContext } from "react";
-import RadioButton from "../../../components/forms/RadioButton";
 import FilterSubHeading from "./FilterSubHeading";
-import CheckBox from "../../../components/forms/CheckBox";
 import { useRouter } from "next/navigation";
 import { QueryContext } from "../../../context/QueryContext";
 import SizeButton from "../../../components/buttons/SizeButton";
+import PriceButton from "../../../components/buttons/PriceButton";
+import ColorButton from "../../../components/buttons/ColorButton";
 
 let priceRanges = [
   { id: "#1", labelText: "Less Than ₹500", query: "0-500" },
@@ -17,15 +17,108 @@ let priceRanges = [
 ];
 
 let colors = [
-  { id: "#1", labelText: "Arctic Wolf", query: "artic-wolf" },
-  { id: "#2", labelText: "Black", query: "black" },
-  { id: "#3", labelText: "Cannoli", query: "cannoli" },
-  { id: "#4", labelText: "Dark Oak", query: "dark-oak" },
-  { id: "#5", labelText: "Green", query: "green" },
-  { id: "#6", labelText: "Heather", query: "heather" },
-  { id: "#7", labelText: "Midnight Blue", query: "midnight-blue" },
-  { id: "#8", labelText: "Oat Milk", query: "oat-milk" },
-  { id: "#9", labelText: "Royal Blue", query: "royal-blue" },
+  {
+    id: "#1",
+    labelText: "Aloe Green",
+    query: "aloe-green",
+    hexCode: "#cfd2b2",
+  },
+  {
+    id: "#2",
+    labelText: "Apricot Crush",
+    query: "apricot-crush",
+    hexCode: "#c57240",
+  },
+  {
+    id: "#3",
+    labelText: "Aqua Gray",
+    query: "aqua-gray",
+    hexCode: "#92998b",
+  },
+  {
+    id: "#4",
+    labelText: "Artic Wolf",
+    query: "artic-wolf",
+    hexCode: "#ddd3c9",
+  },
+  {
+    id: "#5",
+    labelText: "Astro Dust",
+    query: "astro-dust",
+    hexCode: "#b44141",
+  },
+  {
+    id: "#6",
+    labelText: "Avocado",
+    query: "avocado",
+    hexCode: "#62653a",
+  },
+  {
+    id: "#7",
+    labelText: "Baby Leaf",
+    query: "baby-leaf",
+    hexCode: "#737436",
+  },
+  {
+    id: "#8",
+    labelText: "Black",
+    query: "black",
+    hexCode: "#000000",
+  },
+  {
+    id: "#9",
+    labelText: "Blush",
+    query: "blush",
+    hexCode: "#f0cfc3",
+  },
+  {
+    id: "#10",
+    labelText: "Cannoli",
+    query: "cannoli",
+    hexCode: "#f2f0e3",
+  },
+  {
+    id: "#11",
+    labelText: "Charcoal Melange",
+    query: "charcoal-melange",
+    hexCode: "#6e6d74",
+  },
+  {
+    id: "#12",
+    labelText: "Circular Gray",
+    query: "circular-gray",
+    hexCode: "#b6b6b6",
+  },
+  {
+    id: "#13",
+    labelText: "Charcoal Melange",
+    query: "charcoal-melange",
+    hexCode: "#6e6d74",
+  },
+  {
+    id: "#14",
+    labelText: "Circus Blue",
+    query: "circus-blue",
+    hexCode: "#a3e7fd",
+  },
+  {
+    id: "#15",
+    labelText: "Cranberry Juice",
+    query: "cranberry-juice",
+    hexCode: "#52111b",
+  },
+  {
+    id: "#16",
+    labelText: "Dark Oak",
+    query: "dark-oak",
+    hexCode: "#181812",
+  },
+  {
+    id: "#18",
+    labelText: "Digital Lavander",
+    query: "digital-lavender",
+    hexCode: "#c4afca",
+  },
 ];
 
 let sizes = [
@@ -124,10 +217,10 @@ function SearchPageFilter({}) {
             <ul className="filter-price-list">
               {priceRanges.map((priceRange) => (
                 <li key={priceRange.id} className="filter-price-item">
-                  <RadioButton
+                  <PriceButton
                     labelText={priceRange.labelText}
                     checked={isChecked("priceRanges", priceRange.query)}
-                    onClick={() =>
+                    onChange={() =>
                       handleFilterChange("priceRanges", priceRange.query)
                     }
                   />
@@ -140,11 +233,12 @@ function SearchPageFilter({}) {
         <div className="filter-color py-4 border-b border-b-gray-200">
           <FilterSubHeading heading={"Color"} />
           <div className="filter-color-list-wrapper max-h-60 overflow-y-scroll no-scrollbar">
-            <ul className="filter-color-list">
+            <ul className="filter-color-list grid grid-cols-4">
               {colors.map((color) => (
                 <li key={color.id} className="filter-color-item">
-                  <CheckBox
+                  <ColorButton
                     labelText={color.labelText}
+                    hexCode={color.hexCode}
                     checked={isChecked("colors", color.query)}
                     onChange={() => handleFilterChange("colors", color.query)}
                   />
@@ -177,14 +271,14 @@ function SearchPageFilter({}) {
           <div className="filter-availability-buttons ">
             <ul className="filter-availability-list">
               <li className="filter-availability-item">
-                <RadioButton
+                <PriceButton
                   checked={isChecked("availability", "in-stock")}
                   onClick={() => handleFilterChange("availability", "in-stock")}
                   labelText={"In Stock"}
                 />
               </li>
               <li className="filter-availability-item">
-                <RadioButton
+                <PriceButton
                   checked={isChecked("availability", "out-of-stock")}
                   onClick={() =>
                     handleFilterChange("availability", "out-of-stock")
