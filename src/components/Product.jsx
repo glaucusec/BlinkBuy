@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { calculateDiscountPercentage } from "../lib/percentage";
 import BestSeller from "./badges/BestSeller";

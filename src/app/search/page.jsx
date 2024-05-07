@@ -1,10 +1,8 @@
-"use client";
+import React from "react";
+import ProductGrid from "./ProductGrid";
+import SortBy from "./components/SortBy";
 
-import React, { useState } from "react";
-import ProductGrid from "./filter/ProductGrid";
-import SortBy from "./filter/SortBy";
-
-import ProductFilter from "./filter/ProductFilter";
+import ProductFilter from "./ProductFilter";
 
 function SearchPage() {
   return (

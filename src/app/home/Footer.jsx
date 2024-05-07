@@ -78,11 +78,11 @@ function Footer() {
               >
                 {showCategory ? (
                   <ChevronUpIcon
-                    customClass={"animate__animated animate__fadeIn"}
+                    customclassName={"animate__animated animate__fadeIn"}
                   />
                 ) : (
                   <ChevronDownIcon
-                    customClass={"animate__animated animate__fadeIn"}
+                    customclassName={"animate__animated animate__fadeIn"}
                   />
                 )}
               </button>
@@ -104,11 +104,11 @@ function Footer() {
               >
                 {showNeedHelp ? (
                   <ChevronUpIcon
-                    customClass={"animate__animated animate__fadeIn"}
+                    customclassName={"animate__animated animate__fadeIn"}
                   />
                 ) : (
                   <ChevronDownIcon
-                    customClass={"animate__animated animate__fadeIn"}
+                    customclassName={"animate__animated animate__fadeIn"}
                   />
                 )}
               </button>
@@ -130,11 +130,11 @@ function Footer() {
               >
                 {showCompanyList ? (
                   <ChevronUpIcon
-                    customClass={"animate__animated animate__fadeIn"}
+                    customclassName={"animate__animated animate__fadeIn"}
                   />
                 ) : (
                   <ChevronDownIcon
-                    customClass={"animate__animated animate__fadeIn"}
+                    customclassName={"animate__animated animate__fadeIn"}
                   />
                 )}
               </button>

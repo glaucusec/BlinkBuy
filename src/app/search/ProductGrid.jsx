@@ -1,10 +1,10 @@
 "use client";
 import React, { useContext } from "react";
-import Product from "../../../components/Product";
-import { QueryContext } from "../../../context/QueryContext";
+import Product from "../../components/Product";
+import { SearchProductsContext } from "../../context/SearchProductsContext";
 
 function ProductGrid() {
-  const { loading, setLoading, products } = useContext(QueryContext);
+  const { loading, products } = useContext(SearchProductsContext);
 
   if (loading) {
     return "Loading...";
