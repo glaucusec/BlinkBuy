@@ -7,6 +7,7 @@ import BrandStory from "./home/BrandStory";
 import LatestItems from "./home/LatestItems";
 import TravelHoodie from "./home/TravelHoodie";
 import BestSellers from "./home/BestSellers";
+import MobileBottomNav from "./home/MobileBottomNav";
 
 function HomePage() {
   return (
@@ -19,6 +20,7 @@ function HomePage() {
       <LatestItems />
       <TravelHoodie />
       <BestSellers />
+      <MobileBottomNav />
     </div>
   );
 }

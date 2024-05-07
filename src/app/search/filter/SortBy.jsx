@@ -22,7 +22,7 @@ function SortBy() {
       <div
         className={`${
           showOption ? "" : "hidden"
-        } absolute w-auto z-30 border rounded-xl p-5 bg-white shadow-2xl`}
+        } absolute w-auto z-50 border rounded-xl p-5 bg-white shadow-2xl`}
       >
         <ul>
           <li className="w-full cursor-pointer border-b border-gray-200 rounded-t-lg">

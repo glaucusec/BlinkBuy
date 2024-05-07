@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Product from "../../../components/Product";
 import { QueryContext } from "../../../context/QueryContext";
 
-function SearchPageProductGrid() {
+function ProductGrid() {
   const { loading, setLoading, products } = useContext(QueryContext);
 
   if (loading) {
@@ -30,4 +30,4 @@ function SearchPageProductGrid() {
   );
 }
 
-export default SearchPageProductGrid;
+export default ProductGrid;

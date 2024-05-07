@@ -130,7 +130,7 @@ let sizes = [
   { id: "#6", labelText: "XXXL", query: "xxxl" },
 ];
 
-function SearchPageFilter({}) {
+function ProductFilter({}) {
   const router = useRouter();
 
   const {
@@ -205,7 +205,10 @@ function SearchPageFilter({}) {
   }, [queryParams, router, query]);
 
   return (
-    <div className="filter-wrapper max-h-screen overflow-y-scroll no-scrollbar">
+    <div className="hidden md:block filter-wrapper max-h-screen overflow-y-scroll no-scrollbar">
+      {/* <div className="bg-blue-900 text-white bottom-0 fixed w-full z-50 ">
+        Abhishek
+      </div> */}
       <div className="filter-container flex flex-col">
         <div className="filter-header pb-4 border-b border-b-gray-200">
           <h1 className="text-xl font-semibold">Filter</h1>
@@ -233,7 +236,7 @@ function SearchPageFilter({}) {
         <div className="filter-color py-4 border-b border-b-gray-200">
           <FilterSubHeading heading={"Color"} />
           <div className="filter-color-list-wrapper max-h-60 overflow-y-scroll no-scrollbar">
-            <ul className="filter-color-list grid grid-cols-4">
+            <ul className="filter-color-list grid md: grid-cols-3 lg:grid-cols-4">
               {colors.map((color) => (
                 <li key={color.id} className="filter-color-item">
                   <ColorButton
@@ -294,4 +297,4 @@ function SearchPageFilter({}) {
   );
 }
 
-export default SearchPageFilter;
+export default ProductFilter;
