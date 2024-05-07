@@ -114,9 +114,12 @@ function FilterColor() {
     <div className="filter-color py-4 border-b border-b-gray-200">
       <FilterSubHeading heading={"Color"} />
       <div className="filter-color-list-wrapper max-h-60 overflow-y-scroll no-scrollbar">
-        <ul className="filter-color-list grid md: grid-cols-3 lg:grid-cols-4">
+        <ul className="filter-color-list grid md:grid-cols-3 lg:grid-cols-4">
           {colors.map((color) => (
-            <li key={color.id} className="filter-color-item">
+            <li
+              key={color.id}
+              className="filter-color-item flex flex-col items-center"
+            >
               <ColorButton
                 labelText={color.labelText}
                 hexCode={color.hexCode}

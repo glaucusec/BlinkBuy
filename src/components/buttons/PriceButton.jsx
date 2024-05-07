@@ -4,7 +4,7 @@ function PriceButton({ onChange, labelText, checked }) {
   return (
     <div className="inline-flex items-center">
       <label
-        className="relative flex items-center p-3 cursor-pointer"
+        className="relative flex items-center p-2 cursor-pointer"
         htmlFor="check"
       >
         <input
@@ -32,7 +32,7 @@ function PriceButton({ onChange, labelText, checked }) {
         </span>
       </label>
       <label
-        className="mt-px font-light text-gray-700 cursor-pointer select-none"
+        className="mt-px font-normal text-sm text-gray-700 cursor-pointer select-none"
         htmlFor="check"
       >
         {labelText}

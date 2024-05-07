@@ -1,7 +1,6 @@
 import React from "react";
 
 function ColorButton({ onChange, checked, labelText, hexCode }) {
-
   // use inline style, [dynamic classNamees] is not working with tailwind
   const inlineStyle = {
     background: hexCode,
@@ -9,7 +8,8 @@ function ColorButton({ onChange, checked, labelText, hexCode }) {
   };
 
   return (
-    <div className="inline-flex flex-col items-center">
+    // <div className="inline-flex flex-col items-center">
+    <React.Fragment>
       <label
         className="relative flex items-center p-3 cursor-pointer"
         htmlFor="check"
@@ -45,7 +45,8 @@ function ColorButton({ onChange, checked, labelText, hexCode }) {
       >
         {labelText}
       </label>
-    </div>
+      {/* </div> */}
+    </React.Fragment>
   );
 }
 

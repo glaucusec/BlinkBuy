@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useState, useEffect, useContext } from "react";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { SearchProductsContext } from "./SearchProductsContext";
 
 export const QueryContext = createContext("");
@@ -11,6 +10,7 @@ export function QueryProvider(props) {
   const { setProducts, setLoading } = useContext(SearchProductsContext);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const [query, setQuery] = useState(searchParams.get("q") || "");
 
   // helper function for parsing the queryParams
@@ -74,7 +74,9 @@ export function QueryProvider(props) {
       );
 
     const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
-    router.push(`/search?${newSearchParams}`, "", { scroll: false });
+    // on the initial load, this will push /search to the history, check with pathname.
+    if (pathname == "/search")
+      router.push(`/search?${newSearchParams}`, "", { scroll: false });
 
     async function fetchData() {
       try {
