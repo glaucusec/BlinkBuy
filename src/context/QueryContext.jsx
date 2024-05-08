@@ -76,7 +76,10 @@ export function QueryProvider(props) {
     const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
     // on the initial load, this will push /search to the history, check with pathname.
     if (pathname == "/search")
-      router.push(`/search?${newSearchParams}`, "", { scroll: false });
+      router.push(`/search?${newSearchParams}`, {
+        scroll: false,
+        shallow: true,
+      });
 
     async function fetchData() {
       try {
