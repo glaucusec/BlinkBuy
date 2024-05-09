@@ -5,21 +5,19 @@ import { QueryContext } from "../../context/QueryContext";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Search() {
-  const queryContext = useContext(QueryContext);
-  const searchTerm = queryContext.query;
-  const setSearchTerm = queryContext.queryChangeHandler;
+  const { q, queryChangeHandler } = useContext(QueryContext);
 
   const router = useRouter();
   const pathname = usePathname();
-  const [inputValue, setInputValue] = useState(searchTerm);
+  const [inputValue, setInputValue] = useState(q);
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
-      setSearchTerm(inputValue);
+      queryChangeHandler(inputValue);
     }, 300);
 
     return () => clearTimeout(debounceTimeout);
-  }, [inputValue, setSearchTerm]);
+  }, [inputValue]);
 
   const searchInputChangeHandler = (e) => {
     if (e.target.value && pathname !== "/search") {

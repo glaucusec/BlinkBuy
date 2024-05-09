@@ -1,17 +1,14 @@
 "use client";
 
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { SearchProductsContext } from "./SearchProductsContext";
-
 export const QueryContext = createContext("");
 
 export function QueryProvider(props) {
-  const { setProducts, setLoading } = useContext(SearchProductsContext);
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const [query, setQuery] = useState(searchParams.get("q") || "");
+  const [q, setQuery] = useState(searchParams.get("q") || "");
 
   // helper function for parsing the queryParams
   const splitQueryParam = (param) => (param ? param.split(",") : []);
@@ -39,29 +36,6 @@ export function QueryProvider(props) {
   const isChecked = (filterType, value) =>
     queryParams[filterType].includes(value);
 
-  // GraphQL Query and Fetch API Options
-  const graphqQuery = `
-    query {
-      products(q: "${query}") {
-        id
-        title
-        discountedPrice
-        reviewsAverage
-        reviewsCount
-        price
-        isActive
-        images 
-      }
-    }`;
-
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query: graphqQuery }),
-  };
-
   useEffect(() => {
     const nonEmptyParams = Object.entries(queryParams)
       .filter(([key, value]) => value.length > 0)
@@ -70,7 +44,7 @@ export function QueryProvider(props) {
           acc[key] = value.join(",");
           return acc;
         },
-        { q: query } // default object, url will have query as the first parameter
+        { q: q } // default object, url will have query as the first parameter
       );
 
     const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
@@ -80,28 +54,10 @@ export function QueryProvider(props) {
         scroll: false,
         shallow: true,
       });
-
-    async function fetchData() {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/graphql", requestOptions);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const responseJson = await response.json();
-        const data = await responseJson.data;
-        setProducts(data.products);
-        setLoading(false);
-      } catch (err) {
-        console.error("There was a problem with the GraphQL request:", err);
-      }
-    }
-
-    fetchData();
-  }, [queryParams, query]);
+  }, [queryParams, q]);
 
   const propContext = {
-    query,
+    q,
     queryChangeHandler,
     queryParams,
     queryParamsChangeHandler,

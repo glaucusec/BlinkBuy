@@ -1,12 +1,13 @@
 const { PrismaClient } = require("@prisma/client");
-const { mens_joggers, co_ords } = require("./data.js");
+const { joggers, co_ords, oversized_tshirts } = require("./data.js");
 
 // https://github.com/prisma/prisma/discussions/2222
 const prisma = new PrismaClient();
 
 async function main() {
-  seedToDatabase(mens_joggers);
+  seedToDatabase(joggers);
   seedToDatabase(co_ords);
+  seedToDatabase(oversized_tshirts);
 }
 
 async function seedToDatabase(arr) {

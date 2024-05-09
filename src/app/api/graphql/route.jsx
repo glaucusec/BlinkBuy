@@ -4,7 +4,7 @@ import { createYoga, createSchema } from "graphql-yoga";
 const schema = createSchema({
   typeDefs: /* GraphQL*/ `
     type Query {
-      products(q: String): [Products!]!,
+      products(q: String, take: Int!, skip: Int!): [Products!]!,
       product(id: ID!): Product!
     }
     
@@ -32,7 +32,7 @@ const schema = createSchema({
   `,
   resolvers: {
     Query: {
-      products: async (_, { q }) => {
+      products: async (_, { q, take, skip }) => {
         const products = await prisma.product.findMany({
           include: {
             images: {
@@ -41,6 +41,8 @@ const schema = createSchema({
               },
             },
           },
+          take: take,
+          skip: skip,
         });
         const formattedProducts = products.map((product) => {
           const formattedUrls = product.images.map((image) => image.url);
