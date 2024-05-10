@@ -4,8 +4,13 @@ import { createYoga, createSchema } from "graphql-yoga";
 const schema = createSchema({
   typeDefs: /* GraphQL*/ `
     type Query {
-      products(q: String, take: Int!, skip: Int!): [Products!]!,
+      products(q: String, take: Int!, page: Int!): ProductList!,
       product(id: ID!): Product!
+    }
+
+    type ProductList {
+      results: [Products!]!
+      hasMore: Boolean!
     }
     
     type Products {
@@ -32,7 +37,8 @@ const schema = createSchema({
   `,
   resolvers: {
     Query: {
-      products: async (_, { q, take, skip }) => {
+      products: async (_, { q, take, page }) => {
+        // fetch the products related
         const products = await prisma.product.findMany({
           include: {
             images: {
@@ -42,13 +48,19 @@ const schema = createSchema({
             },
           },
           take: take,
-          skip: skip,
+          skip: page * take - take,
         });
         const formattedProducts = products.map((product) => {
           const formattedUrls = product.images.map((image) => image.url);
           return { ...product, images: formattedUrls };
         });
-        return formattedProducts;
+        // fetch the total number of the products
+        const totalNumberOfProducts = await prisma.product.count();
+
+        return {
+          results: formattedProducts,
+          hasMore: totalNumberOfProducts - page * take > 0,
+        };
       },
       product: async (_, { id }) =>
         await prisma.product.findUnique({

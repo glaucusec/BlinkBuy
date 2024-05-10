@@ -3,24 +3,29 @@
 import { useEffect, useState, useContext } from "react";
 import { QueryContext } from "../context/QueryContext";
 
-function useProductsFetch() {
+function useProductsFetch(pageNumber) {
   const { q, queryParams } = useContext(QueryContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [initalLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
 
   // GraphQL Query and Fetch API Options
   const graphqQuery = `
     query {
-        products(q: "${q}", take: 12, skip: 0) {
-        id
-        title
-        discountedPrice
-        reviewsAverage
-        reviewsCount
-        price
-        isActive
-        images 
+        products(q: "${q}", take: 12, page: ${pageNumber}) {
+            results {   
+                id
+                title
+                discountedPrice
+                reviewsAverage
+                reviewsCount
+                price
+                isActive
+                images 
+            },
+            hasMore
         }
     }`;
 
@@ -39,25 +44,31 @@ function useProductsFetch() {
 
     async function fetchData() {
       try {
-        setLoading(true);
+        products && products.length > 0
+          ? setLoading(true)
+          : setInitialLoading(true);
+
+        setError(false);
         const response = await fetch("/api/graphql", requestOptions);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const responseJson = await response.json();
-        const data = await responseJson.data;
-        setProducts(data.products);
-        setLoading(false);
+        const productsData = await responseJson.data.products;
+        setProducts((prevData) => [...prevData, ...productsData.results]);
+        setHasMore(productsData.results.length > 0);
+        products && products.length > 0
+          ? setLoading(false)
+          : setInitialLoading(false);
       } catch (err) {
-        console.log(err.name);
-        setError(err);
+        if (err.name == "AbortError") setError(err);
       }
     }
     fetchData();
     return () => controller.abort();
-  }, [q, queryParams]);
+  }, [q, queryParams, pageNumber]);
 
-  return [products, loading, error];
+  return [products, hasMore, loading, initalLoading, error];
 }
 
 export default useProductsFetch;
