@@ -11,6 +11,11 @@ function useProductsFetch(pageNumber) {
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
 
+  // Remove the old products when the query is changed.
+  useEffect(() => {
+    setProducts([]);
+  }, [q]);
+
   // GraphQL Query and Fetch API Options
   const graphqQuery = `
     query {
