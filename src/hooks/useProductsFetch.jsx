@@ -7,14 +7,15 @@ function useProductsFetch(pageNumber) {
   const { q, queryParams } = useContext(QueryContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [initalLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [totalHits, setTotalHits] = useState(null);
   const [hasMore, setHasMore] = useState(false);
 
   // Remove the old products when the query is changed.
   useEffect(() => {
     setProducts([]);
-  }, [q]);
+  }, [q, queryParams]);
 
   // GraphQL Query and Fetch API Options
   const graphqQuery = `
@@ -30,7 +31,8 @@ function useProductsFetch(pageNumber) {
                 isActive
                 images 
             },
-            hasMore
+            hasMore,
+            totalHits
         }
     }`;
 
@@ -62,6 +64,7 @@ function useProductsFetch(pageNumber) {
         const productsData = await responseJson.data.products;
         setProducts((prevData) => [...prevData, ...productsData.results]);
         setHasMore(productsData.results.length > 0);
+        setTotalHits(productsData.totalHits);
         products && products.length > 0
           ? setLoading(false)
           : setInitialLoading(false);
@@ -73,7 +76,7 @@ function useProductsFetch(pageNumber) {
     return () => controller.abort();
   }, [q, queryParams, pageNumber]);
 
-  return [products, hasMore, loading, initalLoading, error];
+  return [products, hasMore, loading, initialLoading, totalHits, error];
 }
 
 export default useProductsFetch;

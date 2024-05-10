@@ -2,7 +2,6 @@ import React from "react";
 import bestSellerProducts from "../../data/BestSellersData";
 import Product from "../../components/Product";
 
-console.log("homepage");
 function BestSellers() {
   return (
     <div className="latest-items mt-16">

@@ -1,75 +1,10 @@
-import prisma from "../../../lib/prisma";
 import { createYoga, createSchema } from "graphql-yoga";
+import { GQLSchema } from "./schema";
+import { GQLResolver } from "./resolver";
 
 const schema = createSchema({
-  typeDefs: /* GraphQL*/ `
-    type Query {
-      products(q: String, take: Int!, page: Int!): ProductList!,
-      product(id: ID!): Product!
-    }
-
-    type ProductList {
-      results: [Products!]!
-      hasMore: Boolean!
-    }
-    
-    type Products {
-      id: ID,
-      title: String,
-      discountedPrice: Int,
-      reviewsAverage: Float,
-      reviewsCount: Int,
-      price: Float,
-      isActive: Boolean,
-      images: [String]
-    }
-
-    type Product {
-      id: ID,
-      title: String,
-      discountedPrice: Int,
-      reviewsAverage: Float,
-      reviewsCount: Int,
-      price: Float,
-      isActive: Boolean,
-    }
-
-  `,
-  resolvers: {
-    Query: {
-      products: async (_, { q, take, page }) => {
-        // fetch the products related
-        const products = await prisma.product.findMany({
-          include: {
-            images: {
-              select: {
-                url: true,
-              },
-            },
-          },
-          take: take,
-          skip: page * take - take,
-        });
-        const formattedProducts = products.map((product) => {
-          const formattedUrls = product.images.map((image) => image.url);
-          return { ...product, images: formattedUrls };
-        });
-        // fetch the total number of the products
-        const totalNumberOfProducts = await prisma.product.count();
-
-        return {
-          results: formattedProducts,
-          hasMore: totalNumberOfProducts - page * take > 0,
-        };
-      },
-      product: async (_, { id }) =>
-        await prisma.product.findUnique({
-          where: {
-            id: id,
-          },
-        }),
-    },
-  },
+  typeDefs: GQLSchema,
+  resolvers: GQLResolver,
 });
 
 const handleRequest = createYoga({

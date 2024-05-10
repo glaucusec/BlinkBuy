@@ -14,10 +14,10 @@ import useProductsFetch from "../../hooks/useProductsFetch";
 
 import { QueryContext } from "../../context/QueryContext";
 
-function ProductGrid() {
+function ProductGrid({ setTotalItems }) {
   const { q } = useContext(QueryContext);
   const [pageNumber, setPageNumber] = useState(1);
-  const [products, hasMore, loading, initalLoading, error] =
+  const [products, hasMore, loading, initalLoading, totalHits, error] =
     useProductsFetch(pageNumber);
 
   const observer = useRef();
@@ -41,6 +41,11 @@ function ProductGrid() {
     },
     [loading, hasMore]
   );
+
+  // Update
+  useEffect(() => {
+    setTotalItems(totalHits);
+  }, [totalHits]);
 
   useEffect(() => {
     setPageNumber(1);

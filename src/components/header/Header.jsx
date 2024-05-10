@@ -1,12 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  IconMenu2,
-  IconSearch,
-  IconUser,
-  IconShoppingBag,
-} from "@tabler/icons-react";
+import { IconMenu2, IconUser, IconShoppingBag } from "@tabler/icons-react";
 
 import Search from "./Search";
 import MensHoverMenu from "./MensHoverMenu";
@@ -58,10 +53,7 @@ function Header() {
       <div className="cart-user-menu flex items-center justify-end">
         <ol className="flex flex-row items-center justify-center">
           <li className="md:border-2 border-solid md:max-w-[200px] lg:max-w-full">
-            <div className="grid grid-flow-col gap-2 p-1 ">
-              <IconSearch />
-              <Search />
-            </div>
+            <Search />
           </li>
           <li className="px-2 hidden md:block">
             <IconUser stroke={2} />
