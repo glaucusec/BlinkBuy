@@ -1,6 +1,6 @@
 export const GQLSchema = /* GraphQL*/ `
     type Query {
-    products(q: String, take: Int!, page: Int!, colors: [String]): ProductList!,
+    products(q: String, take: Int!, page: Int!, colors: [String], prices: [String], sizes: [String]): ProductList!,
     product(id: ID!): Product!
     }
 

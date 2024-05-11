@@ -52,6 +52,17 @@ function ProductGrid({ setTotalItems }) {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [q]);
 
+  if (products.length == 0)
+    return (
+      <div className="flex flex-col items-center">
+        <section className="text-xl">No results found for '{q}'</section>
+        <section>
+          Try clearing some filters from here or try searching some other
+          keywords Look at other items in our store
+        </section>
+      </div>
+    );
+
   if (initalLoading) return <Spinner />;
 
   return (

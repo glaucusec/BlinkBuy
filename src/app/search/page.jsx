@@ -1,15 +1,15 @@
 "use client";
 import React, { useState, useContext } from "react";
 import ProductGrid from "./ProductGrid";
+import ProductFilter from "./ProductFilter";
 import SortBy from "./components/SortBy";
 import { QueryContext } from "../../context/QueryContext";
-
-import ProductFilter from "./ProductFilter";
+import { titleCase } from "../../utils/utils";
 
 function SearchPage() {
   const [totalItems, setTotalItems] = useState();
   const { q } = useContext(QueryContext);
-  const capitalizedQuery = q.charAt(0).toUpperCase() + q.slice(1);
+  const capitalizedQuery = titleCase(q);
 
   return (
     <div className="search-container md:px-2 lg:px-8 xl:px-12">

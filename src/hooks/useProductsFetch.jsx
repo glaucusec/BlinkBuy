@@ -19,8 +19,8 @@ function useProductsFetch(pageNumber) {
 
   // GraphQL Query and Fetch API Options
   const graphqQuery = `
-    query {
-        products(q: "${q}", take: 12, page: ${pageNumber}) {
+    query($colors: [String!], $sizes: [String!], $prices: [String!]) {
+        products(q: "${q}", take: 12, page: ${pageNumber}, colors: $colors, sizes: $sizes, prices: $prices) {
             results {   
                 id
                 title
@@ -45,7 +45,14 @@ function useProductsFetch(pageNumber) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query: graphqQuery }),
+      body: JSON.stringify({
+        query: graphqQuery,
+        variables: {
+          colors: queryParams.colors,
+          sizes: queryParams.sizes,
+          prices: queryParams.priceRanges,
+        },
+      }),
       signal,
     };
 

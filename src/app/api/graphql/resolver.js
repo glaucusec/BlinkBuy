@@ -7,6 +7,15 @@ export const GQLResolver = {
 
       // fetch the products related
       const products = await prisma.product.findMany({
+        where: {
+          tags: {
+            some: {
+              name: {
+                startsWith: q,
+              },
+            },
+          },
+        },
         include: {
           images: {
             select: {

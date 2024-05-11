@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { calculateDiscountPercentage } from "../lib/percentage";
+import { calculateDiscountPercentage } from "../utils/utils";
 import BestSeller from "./badges/BestSeller";
 
 const Product = forwardRef(function (
