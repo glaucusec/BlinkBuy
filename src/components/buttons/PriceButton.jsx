@@ -1,6 +1,7 @@
 import React from "react";
 
 function PriceButton({ onChange, labelText, checked }) {
+  console.log(checked, labelText);
   return (
     <div className="inline-flex items-center">
       <label
@@ -12,7 +13,6 @@ function PriceButton({ onChange, labelText, checked }) {
           checked={checked}
           type="checkbox"
           className="peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border transition-all before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:opacity-0 before:transition-opacity checked:border-red-900 checked:bg-red-900 "
-          id="check"
         />
         <span className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
           <svg

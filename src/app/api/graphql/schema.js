@@ -11,14 +11,15 @@ export const GQLSchema = /* GraphQL*/ `
     }
 
     type Products {
-    id: ID,
-    title: String,
-    discountedPrice: Int,
-    reviewsAverage: Float,
-    reviewsCount: Int,
-    price: Float,
-    isActive: Boolean,
+    id: ID
+    title: String
+    discountedPrice: Int
+    reviewsAverage: Float
+    reviewsCount: Int
+    price: Float
+    isActive: Boolean
     images: [String]
+    sizes: [String]
     }
 
     type Product {

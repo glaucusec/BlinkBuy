@@ -17,7 +17,7 @@ import { QueryContext } from "../../context/QueryContext";
 function ProductGrid({ setTotalItems }) {
   const { q } = useContext(QueryContext);
   const [pageNumber, setPageNumber] = useState(1);
-  const [products, hasMore, loading, initalLoading, totalHits, error] =
+  const [products, hasMore, loading, totalHits, error] =
     useProductsFetch(pageNumber);
 
   const observer = useRef();
@@ -52,6 +52,8 @@ function ProductGrid({ setTotalItems }) {
     window.scroll({ top: 0, behavior: "smooth" });
   }, [q]);
 
+  if (loading) return <Spinner />;
+
   if (products.length == 0)
     return (
       <div className="flex flex-col items-center">
@@ -62,8 +64,6 @@ function ProductGrid({ setTotalItems }) {
         </section>
       </div>
     );
-
-  if (initalLoading) return <Spinner />;
 
   return (
     <div className="search-products-grid grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-4 overflow-y-auto no-scrollbar">

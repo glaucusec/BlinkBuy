@@ -8,7 +8,6 @@ function useProductsFetch(pageNumber) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [initialLoading, setInitialLoading] = useState(true);
   const [totalHits, setTotalHits] = useState(null);
   const [hasMore, setHasMore] = useState(false);
 
@@ -20,20 +19,20 @@ function useProductsFetch(pageNumber) {
   // GraphQL Query and Fetch API Options
   const graphqQuery = `
     query($colors: [String!], $sizes: [String!], $prices: [String!]) {
-        products(q: "${q}", take: 12, page: ${pageNumber}, colors: $colors, sizes: $sizes, prices: $prices) {
-            results {   
-                id
-                title
-                discountedPrice
-                reviewsAverage
-                reviewsCount
-                price
-                isActive
-                images 
-            },
-            hasMore,
-            totalHits
-        }
+      products(q: "${q}", take: 12, page: ${pageNumber}, colors: $colors, sizes: $sizes, prices: $prices) {
+        results {   
+          id
+          title
+          discountedPrice
+          reviewsAverage
+          reviewsCount
+          price
+          isActive
+          images 
+        },
+        hasMore,
+        totalHits
+      }
     }`;
 
   useEffect(() => {
@@ -58,9 +57,7 @@ function useProductsFetch(pageNumber) {
 
     async function fetchData() {
       try {
-        products && products.length > 0
-          ? setLoading(true)
-          : setInitialLoading(true);
+        setLoading(true);
 
         setError(false);
         const response = await fetch("/api/graphql", requestOptions);
@@ -72,9 +69,7 @@ function useProductsFetch(pageNumber) {
         setProducts((prevData) => [...prevData, ...productsData.results]);
         setHasMore(productsData.results.length > 0);
         setTotalHits(productsData.totalHits);
-        products && products.length > 0
-          ? setLoading(false)
-          : setInitialLoading(false);
+        setLoading(false);
       } catch (err) {
         if (err.name == "AbortError") setError(err);
       }
@@ -83,7 +78,7 @@ function useProductsFetch(pageNumber) {
     return () => controller.abort();
   }, [q, queryParams, pageNumber]);
 
-  return [products, hasMore, loading, initialLoading, totalHits, error];
+  return [products, hasMore, loading, totalHits, error];
 }
 
 export default useProductsFetch;
