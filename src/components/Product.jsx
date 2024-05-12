@@ -1,9 +1,11 @@
 import React, { forwardRef } from "react";
 import { calculateDiscountPercentage } from "../utils/utils";
 import BestSeller from "./badges/BestSeller";
+import Link from "next/link";
 
 const Product = forwardRef(function (
   {
+    product__id,
     product__image,
     product__name,
     product__regular,
@@ -21,7 +23,7 @@ const Product = forwardRef(function (
   return (
     <div className={padding ? "p-2" : ""} ref={ref}>
       <section className="product_className_container">
-        <a href="">
+        <Link href={`/products/${product__id}`} target="_blank">
           <div className="flex flex-col">
             <div className="flex w-full relative aspect-[2/3] image_container">
               <figure className="flex">
@@ -63,7 +65,7 @@ const Product = forwardRef(function (
               </article>
             </article>
           </section>
-        </a>
+        </Link>
       </section>
     </div>
   );

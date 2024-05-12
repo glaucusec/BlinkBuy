@@ -1,7 +1,6 @@
 import React from "react";
 
 function PriceButton({ onChange, labelText, checked }) {
-  console.log(checked, labelText);
   return (
     <div className="inline-flex items-center">
       <label

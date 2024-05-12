@@ -1,14 +1,23 @@
 import React from "react";
 
-function SizeButton({ size, onClick, checked }) {
+function SizeButton({ size, onClick, checked, available }) {
   const checkedclassName = checked ? "bg-blinkSizeBtn border-[#9f8728]" : "";
+  const disabledStyles = !available ? "text-gray-300" : "";
+
   return (
-    <button
-      onClick={onClick}
-      className={`py-1 border rounded-3xl w-full ${checkedclassName} `}
-    >
-      {size}
-    </button>
+    <label className="flex flex-col items-center w-full">
+      <button
+        disabled={!available}
+        onClick={onClick}
+        className={`relative py-1 border rounded-3xl w-full ${disabledStyles} ${checkedclassName} `}
+      >
+        {size}
+        {!available && <div className="absolute top-1/2 w-full border"></div>}
+      </button>
+      {!available && (
+        <span className="text-xs text-red-500 font-semibold">Sold out</span>
+      )}
+    </label>
   );
 }
 
