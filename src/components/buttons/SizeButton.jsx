@@ -1,6 +1,6 @@
 import React from "react";
 
-function SizeButton({ size, onClick, checked, available }) {
+function SizeButton({ size, onClick, checked, available = true }) {
   const checkedclassName = checked ? "bg-blinkSizeBtn border-[#9f8728]" : "";
   const disabledStyles = !available ? "text-gray-300" : "";
 

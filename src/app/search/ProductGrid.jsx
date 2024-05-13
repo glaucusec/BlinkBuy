@@ -7,7 +7,6 @@ import React, {
   useContext,
 } from "react";
 import Product from "../../components/Product";
-import Spinner from "../../components/spinner/Spinner";
 import SpinnerIOS from "../../components/spinner/SpinnerIOS";
 
 import useProductsFetch from "../../hooks/useProductsFetch";
@@ -15,7 +14,7 @@ import useProductsFetch from "../../hooks/useProductsFetch";
 import { QueryContext } from "../../context/QueryContext";
 
 function ProductGrid({ setTotalItems }) {
-  const { q } = useContext(QueryContext);
+  const { q, queryParams } = useContext(QueryContext);
   const [pageNumber, setPageNumber] = useState(1);
   const [products, hasMore, loading, totalHits, error] =
     useProductsFetch(pageNumber);
@@ -50,9 +49,8 @@ function ProductGrid({ setTotalItems }) {
   useEffect(() => {
     setPageNumber(1);
     window.scroll({ top: 0, behavior: "smooth" });
-  }, [q]);
+  }, [q, queryParams]);
 
-  if (loading) return <Spinner />;
 
   if (products.length == 0)
     return (

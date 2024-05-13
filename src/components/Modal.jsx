@@ -34,7 +34,11 @@ function Modal({ isOpen, hasCloseBtn, onClose, children }) {
   });
 
   return (
-    <dialog ref={modalRef} onKeyDown={handleKeyDown} className="modal">
+    <dialog
+      ref={modalRef}
+      onKeyDown={handleKeyDown}
+      className="backdrop:bg-black/25"
+    >
       {hasCloseBtn && (
         <button className="modal-close-btn" onClick={handleCloseModal}>
           Close

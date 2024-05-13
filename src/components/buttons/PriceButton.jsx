@@ -3,10 +3,7 @@ import React from "react";
 function PriceButton({ onChange, labelText, checked }) {
   return (
     <div className="inline-flex items-center">
-      <label
-        className="relative flex items-center p-2 cursor-pointer"
-        htmlFor="check"
-      >
+      <label className="relative flex items-center p-2 cursor-pointer">
         <input
           onChange={onChange}
           checked={checked}
@@ -30,10 +27,7 @@ function PriceButton({ onChange, labelText, checked }) {
           </svg>
         </span>
       </label>
-      <label
-        className="mt-px font-normal text-sm text-gray-700 cursor-pointer select-none"
-        htmlFor="check"
-      >
+      <label className="mt-px font-normal text-sm text-gray-700 cursor-pointer select-none">
         {labelText}
       </label>
     </div>

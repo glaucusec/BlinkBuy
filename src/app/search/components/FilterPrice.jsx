@@ -20,14 +20,11 @@ function FilterPrice() {
       <div className="filter-price-list-wrapper ">
         <ul className="filter-price-list">
           {priceRanges.map((priceRange, index) => (
-            <li
-              onClick={() =>
-                queryParamsChangeHandler("priceRanges", priceRange.query)
-              }
-              key={index}
-              className="filter-price-item"
-            >
+            <li key={index} className="filter-price-item">
               <PriceButton
+                onChange={() =>
+                  queryParamsChangeHandler("priceRanges", priceRange.query)
+                }
                 labelText={priceRange.labelText}
                 checked={isChecked("priceRanges", priceRange.query)}
               />
