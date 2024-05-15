@@ -27,7 +27,7 @@ async function page({ params }) {
   const images = product.images;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 py-12">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
       <ImageGallery images={images} />
       <ProductPanel product={product} />
     </div>
