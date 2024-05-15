@@ -1,0 +1,45 @@
+.dialog::backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: none;
+}
+.dialog[open] {
+  animation: show .3s ease-in-out normal forwards;
+}
+
+dialog.hide {
+  animation: hide .3s ease normal forwards;
+}
+
+@keyframes hide {
+  to {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes show-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hide-backdrop {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

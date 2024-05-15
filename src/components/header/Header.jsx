@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IconMenu2, IconUser, IconShoppingBag } from "@tabler/icons-react";
@@ -7,13 +8,20 @@ import Search from "./Search";
 import MensHoverMenu from "./MensHoverMenu";
 import WomensHoverMenu from "./WomenHoverMenu";
 
+import MobileSideNav from "./MobileSideNav";
+
 function Header() {
+  const [showMobileNav, setShowMobileNav] = useState(false);
   return (
     <nav className="border-b border-solid grid grid-cols-3 lg:grid-cols-[3fr_2fr] lg:gap-26 sticky top-0 z-20 bg-white px-4 2xl:px-24 h-14 lg:h-16">
+      <MobileSideNav
+        showMobileNav={showMobileNav}
+        setShowMobileNav={setShowMobileNav}
+      />
       {/* Grid #1 */}
       <div className="mobile-hamburger-menu flex items-center justify-start lg:hidden">
         <a href="#">
-          <IconMenu2 stroke={2} />
+          <IconMenu2 onClick={() => setShowMobileNav(true)} stroke={2} />
         </a>
       </div>
 
