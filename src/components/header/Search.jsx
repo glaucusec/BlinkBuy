@@ -36,7 +36,7 @@ export default function Search() {
   };
 
   return (
-    <div className="flex justify-between items-center gap-2 p-1 ">
+    <div className="md:border-2 border-solid flex justify-between items-center gap-2 p-1 ">
       <IconSearch height={20} width={20} />
       <input
         onChange={searchInputChangeHandler}

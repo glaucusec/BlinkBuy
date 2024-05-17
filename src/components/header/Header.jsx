@@ -9,6 +9,7 @@ import MensHoverMenu from "./MensHoverMenu";
 import WomensHoverMenu from "./WomenHoverMenu";
 
 import MobileSideNav from "./MobileSideNav";
+import UserMenu from "./UserMenu";
 
 function Header() {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -28,7 +29,7 @@ function Header() {
       {/* Grid #2 */}
       <div className="flex justify-center lg:justify-around hover:text-gray-300">
         <div className="flex items-center">
-          <Link href="/" className="website-logo  h-8 w-12">
+          <Link href="/" className="website-logo h-8 w-12">
             <Image src="/logo.svg" alt="Website Logo" height={32} width={48} />
           </Link>
         </div>
@@ -59,17 +60,16 @@ function Header() {
 
       {/* Grid #3 */}
       <div className="cart-user-menu flex items-center justify-end">
-        <ol className="flex flex-row items-center justify-center">
-          <li className="md:border-2 border-solid md:max-w-[200px] lg:max-w-full">
-            <Search />
-          </li>
-          <li className="px-2 hidden md:block">
-            <IconUser stroke={2} />
-          </li>
-          <li className="px-2">
-            <IconShoppingBag stroke={2} />
-          </li>
-        </ol>
+        <div className="md:max-w-[200px] lg:max-w-full h-full flex items-center">
+          <Search />
+        </div>
+        <div className="group h-full px-2 hidden md:flex items-center">
+          <IconUser stroke={2} />
+          <UserMenu />
+        </div>
+        <div className="px-2 flex items-center h-full">
+          <IconShoppingBag stroke={2} />
+        </div>
       </div>
     </nav>
   );
