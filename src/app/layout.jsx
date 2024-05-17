@@ -2,6 +2,7 @@ import { AR_One_Sans } from "next/font/google";
 import "./globals.css";
 
 import { QueryProvider } from "../context/QueryContext";
+import { Suspense } from "react";
 
 import ScrollingText from "./home/ScrollingText";
 import Header from "../components/header/Header";
@@ -18,12 +19,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={ar_one_sans.className}>
         <ScrollingText />
-
-        <QueryProvider>
-          <Header />
-          {children}
-          <Footer />
-        </QueryProvider>
+        <Suspense>
+          <QueryProvider>
+            <Header />
+            {children}
+            <Footer />
+          </QueryProvider>
+        </Suspense>
       </body>
     </html>
   );
