@@ -50,3 +50,9 @@ model Size {
     name     String
     products Product[]
 }
+
+model User {
+    id    String @id
+    name  String
+    email String @unique
+}
