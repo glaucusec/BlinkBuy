@@ -43,8 +43,6 @@ export const GQLResolver = {
         return result;
       }, []);
 
-      console.log(priceFilters);
-
       // fetch the products related
       const products = await prisma.product.findMany({
         where: {
@@ -66,8 +64,6 @@ export const GQLResolver = {
         take: take,
         skip: page * take - take,
       });
-
-      if (products.length > 0) console.log("products found");
 
       const formattedProducts = products.map((product) => {
         const formattedUrls = product.images.map((image) => image.url);

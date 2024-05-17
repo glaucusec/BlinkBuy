@@ -1,6 +1,7 @@
 import { createYoga, createSchema } from "graphql-yoga";
 import { GQLSchema } from "./schema";
 import { GQLResolver } from "./resolver";
+import { NextResponse, NextRequest } from "next/server";
 
 const schema = createSchema({
   typeDefs: GQLSchema,
@@ -10,11 +11,16 @@ const schema = createSchema({
 const handleRequest = createYoga({
   schema: schema,
   graphqlEndpoint: "/api/graphql",
-  fetchAPI: { Response },
+  fetchAPI: { Request: NextRequest, Response: NextResponse },
 });
 
+// Wrapper function to ensure the correct request type is passed
+const handleYogaRequest = async (request) => {
+  return handleRequest(request);
+};
+
 export {
-  handleRequest as GET,
-  handleRequest as POST,
-  handleRequest as OPTIONS,
+  handleYogaRequest as GET,
+  handleYogaRequest as POST,
+  handleYogaRequest as OPTIONS,
 };
