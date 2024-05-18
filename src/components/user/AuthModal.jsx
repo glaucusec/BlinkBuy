@@ -30,7 +30,7 @@ function AuthModal() {
           onClick={handleLoginMode}
           className="text-gray-600 underline cursor-pointer"
         >
-          {isLoginMode ? "Login" : "Register"}
+          {isLoginMode ? "Register" : "Login"}
         </span>
       </section>
     </div>

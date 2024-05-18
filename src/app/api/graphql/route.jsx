@@ -1,11 +1,13 @@
 import { createYoga, createSchema } from "graphql-yoga";
-import { GQLSchema } from "./schema";
-import { GQLResolver } from "./resolver";
+import { GQLSchema } from "../../../graphql/schemas/productSchema";
+import { GQLResolver } from "../../../graphql/resolvers/productResolver";
+import { GQLAuthSchema } from "../../../graphql/schemas/authSchema";
+import { GQLAuthResolver } from "../../../graphql/resolvers/authResolver";
 import { NextResponse, NextRequest } from "next/server";
 
 const schema = createSchema({
-  typeDefs: GQLSchema,
-  resolvers: GQLResolver,
+  typeDefs: [GQLSchema, GQLAuthSchema],
+  resolvers: [GQLResolver, GQLAuthResolver],
 });
 
 const handleRequest = createYoga({
