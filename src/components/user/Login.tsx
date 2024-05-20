@@ -1,6 +1,12 @@
 import React from "react";
+import Button from "./Button";
 
-function Login() {
+type LoginPropsType = {
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function Login({ setStatus, setMessage }: LoginPropsType) {
   return (
     <form className="flex flex-col gap-4" action="">
       <div className="flex flex-col">
@@ -25,7 +31,7 @@ function Login() {
           name="password"
         />
       </div>
-      <button className="p-2 bg-blinkblue text-white rounded-sm">Login</button>
+      <Button text={"Login"} />
     </form>
   );
 }

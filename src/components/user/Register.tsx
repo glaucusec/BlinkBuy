@@ -1,8 +1,28 @@
 import React from "react";
+import signup from "./actions";
+import Button from "./Button";
 
-function Register() {
+type LoginPropsType = {
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+};
+
+type ResponseType = { success: boolean; error: boolean; message: string };
+
+function Register({ setStatus, setMessage }: LoginPropsType) {
   return (
-    <form className="flex flex-col gap-4" action="">
+    <form
+      action={async (formData: FormData) => {
+        const { success, error, message }: ResponseType = await signup(
+          formData
+        );
+        success == true && error == false
+          ? setStatus("success")
+          : setStatus("error");
+        message ? setMessage(message) : "";
+      }}
+      className="flex flex-col gap-4"
+    >
       <div className="flex flex-col">
         <label className="font-semibold mb-3" id="email" htmlFor="email">
           Email
@@ -40,9 +60,7 @@ function Register() {
           name="password2"
         />
       </div>
-      <button className="p-2 bg-blinkblue text-white rounded-sm">
-        Register
-      </button>
+      <Button text={"Register"} />
     </form>
   );
 }
