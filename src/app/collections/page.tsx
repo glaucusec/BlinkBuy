@@ -1,5 +1,4 @@
-import React, { cloneElement } from "react";
-import Image from "next/image";
+import React from "react";
 import collectionsData from "../../data/CollectionsPageData";
 import CollectionCard from "../../components/cards/CollectionCard";
 
