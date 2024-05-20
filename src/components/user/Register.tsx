@@ -1,5 +1,5 @@
 import React from "react";
-import signup from "./actions";
+import { signup } from "./actions";
 import Button from "./Button";
 
 type LoginPropsType = {
