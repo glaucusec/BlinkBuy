@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 
-let prisma;
+// Declare global type extension
+declare const global: typeof globalThis & {
+  prisma?: PrismaClient;
+};
+
+let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
