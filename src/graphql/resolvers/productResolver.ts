@@ -1,8 +1,42 @@
 import prisma from "../../lib/prisma";
 
+export type ProductType = {
+  id: string;
+  title: string;
+  discountedPrice: number;
+  reviewsAverage: number;
+  reviewsCount: number;
+  price: number;
+  isActive: boolean;
+  isBestSeller: boolean;
+  published: boolean;
+};
+
+export type Image = {
+  url: string;
+};
+
+export type Size = {
+  name: string;
+};
+
+export type ProductResponseType = ProductType & {
+  images?: Image[];
+  sizes?: Size[];
+};
+
+export type GQLProductsArgType = {
+  q?: string;
+  prices?: string[];
+  colors?: string[];
+  sizes?: string[];
+  take?: number;
+  page?: number;
+};
+
 export const GQLResolver = {
   Query: {
-    products: async (_, args) => {
+    products: async (_, args: GQLProductsArgType) => {
       const { q, prices, colors, sizes, take, page } = args;
       const whereClause = {
         tags:
@@ -65,7 +99,7 @@ export const GQLResolver = {
         skip: page * take - take,
       });
 
-      const formattedProducts = products.map((product) => {
+      const formattedProducts = products.map((product: ProductResponseType) => {
         const formattedUrls = product.images.map((image) => image.url);
         const formattedSizes = product.sizes.map((size) => size.name);
         return {
@@ -84,7 +118,7 @@ export const GQLResolver = {
         totalHits: totalNumberOfProducts,
       };
     },
-    product: async (_, args) => {
+    product: async (_, args: { id: string }) => {
       const { id } = args;
       const product = await prisma.product.findUnique({
         where: {

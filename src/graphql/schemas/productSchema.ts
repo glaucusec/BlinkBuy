@@ -30,5 +30,7 @@ export const GQLSchema = /* GraphQL*/ `
         reviewsCount: Int,
         price: Float,
         isActive: Boolean,
+        isBestSeller: Boolean,
+        published: Boolean,
     }
 `;
