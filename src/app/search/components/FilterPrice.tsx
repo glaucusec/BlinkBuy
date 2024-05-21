@@ -3,6 +3,8 @@ import FilterSubHeading from "./FilterSubHeading";
 import PriceButton from "../../../components/buttons/PriceButton";
 import { QueryContext } from "../../../context/QueryContext";
 
+import { QueryContextPropsType } from "../../../lib/types";
+
 let priceRanges = [
   { labelText: "Less Than ₹500", query: "0-500" },
   { labelText: "₹ 501 - ₹ 1,000", query: "500-1000" },
@@ -12,7 +14,9 @@ let priceRanges = [
 ];
 
 function FilterPrice() {
-  const { queryParamsChangeHandler, isChecked } = useContext(QueryContext);
+  const { queryParamsChangeHandler, isChecked } = useContext(
+    QueryContext
+  ) as QueryContextPropsType;
 
   return (
     <div className="filter-price py-4 border-b border-b-gray-200">

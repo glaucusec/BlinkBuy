@@ -3,8 +3,12 @@ import FilterSubHeading from "./FilterSubHeading";
 import PriceButton from "../../../components/buttons/PriceButton";
 import { QueryContext } from "../../../context/QueryContext";
 
+import { QueryContextPropsType } from "../../../lib/types";
+
 function FilterAvailability() {
-  const { queryParamsChangeHandler, isChecked } = useContext(QueryContext);
+  const { queryParamsChangeHandler, isChecked } = useContext(
+    QueryContext
+  ) as QueryContextPropsType;
   return (
     <div className="filter-availability py-4 border-b border-b-gray-200">
       <FilterSubHeading heading={"Availability"} />

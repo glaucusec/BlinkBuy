@@ -3,6 +3,8 @@ import FilterSubHeading from "./FilterSubHeading";
 import ColorButton from "../../../components/buttons/ColorButton";
 import { QueryContext } from "../../../context/QueryContext";
 
+import { QueryContextPropsType } from "../../../lib/types";
+
 let colors = [
   {
     id: "#1",
@@ -109,7 +111,9 @@ let colors = [
 ];
 
 function FilterColor() {
-  const { queryParamsChangeHandler, isChecked } = useContext(QueryContext);
+  const { queryParamsChangeHandler, isChecked } = useContext(
+    QueryContext
+  ) as QueryContextPropsType;
   return (
     <div className="filter-color py-4 border-b border-b-gray-200">
       <FilterSubHeading heading={"Color"} />

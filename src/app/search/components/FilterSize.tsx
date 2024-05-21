@@ -3,6 +3,8 @@ import FilterSubHeading from "./FilterSubHeading";
 import SizeButton from "../../../components/buttons/SizeButton";
 import { QueryContext } from "../../../context/QueryContext";
 
+import { QueryContextPropsType } from "../../../lib/types";
+
 let sizes = [
   { id: "#1", labelText: "S", query: "s" },
   { id: "#2", labelText: "M", query: "m" },
@@ -13,7 +15,9 @@ let sizes = [
 ];
 
 function FilterSize() {
-  const { queryParamsChangeHandler, isChecked } = useContext(QueryContext);
+  const { queryParamsChangeHandler, isChecked } = useContext(
+    QueryContext
+  ) as QueryContextPropsType;
   return (
     <div className="filter-sizes py-4 border-b border-b-gray-200">
       <FilterSubHeading heading={"Sizes"} />

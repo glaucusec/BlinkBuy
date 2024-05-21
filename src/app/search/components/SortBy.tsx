@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { IconFilter } from "@tabler/icons-react";
 
 function SortBy() {
-  const [showOption, setShowOption] = useState(false);
+  const [showOption, setShowOption] = useState<boolean>(false);
 
   return (
     <React.Fragment>
@@ -16,9 +16,7 @@ function SortBy() {
         <span className="text-gray-600">Sort By: </span>
         <span className="text-black font-semibold">Featured</span>
       </span>
-      {/* <div className="h-screen w-screen bg-transparent z-30">
 
-      </div> */}
       <div
         className={`${
           showOption ? "" : "hidden"
