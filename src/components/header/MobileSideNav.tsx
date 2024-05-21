@@ -3,7 +3,15 @@ import { IconX, IconShoppingBag } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
 
-function MobileSideNav({ showMobileNav, setShowMobileNav }) {
+type MobileSideNavProps = {
+  showMobileNav: boolean;
+  setShowMobileNav: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function MobileSideNav({
+  showMobileNav,
+  setShowMobileNav,
+}: MobileSideNavProps) {
   return (
     showMobileNav && (
       <div className="mobile-side-nav lg:hidden fixed top-0 h-full w-full shadow-xl animate-leftToRightSlide bg-white">

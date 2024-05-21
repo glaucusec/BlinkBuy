@@ -1,6 +1,12 @@
 import React from "react";
 
-function PriceButton({ onChange, labelText, checked }) {
+type PriceButtonProps = {
+  onChange: () => void;
+  labelText: string;
+  checked: boolean;
+};
+
+function PriceButton({ onChange, labelText, checked }: PriceButtonProps) {
   return (
     <div className="inline-flex items-center">
       <label className="relative flex items-center p-2 cursor-pointer">

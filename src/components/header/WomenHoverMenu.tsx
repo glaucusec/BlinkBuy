@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import AngleNextIcon from "../icons/AngleNextIcon";
 
-function MensHoverMenu() {
+function WomensHoverMenu() {
   return (
     <React.Fragment>
       <div className="invisible absolute font-semibold top-16 left-0 w-full bg-white shadow-2xl group-hover:visible z-20">
@@ -69,7 +69,7 @@ function MensHoverMenu() {
                 </p>
               </div>
               <div className="flex justify-center items-center">
-                <AngleNextIcon />
+                <AngleNextIcon stroke={1} />
               </div>
             </section>
             <section className="grid grid-cols-[1fr_4fr_1fr]">
@@ -86,7 +86,7 @@ function MensHoverMenu() {
                 </p>
               </div>
               <div className="flex justify-center items-center">
-                <AngleNextIcon />
+                <AngleNextIcon stroke={1} />
               </div>
             </section>
             <section className="grid grid-cols-[1fr_4fr_1fr]">
@@ -103,7 +103,7 @@ function MensHoverMenu() {
                 </p>
               </div>
               <div className="flex justify-center items-center">
-                <AngleNextIcon />
+                <AngleNextIcon stroke={1} />
               </div>
             </section>
           </div>
@@ -113,4 +113,4 @@ function MensHoverMenu() {
   );
 }
 
-export default MensHoverMenu;
+export default WomensHoverMenu;

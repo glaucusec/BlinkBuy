@@ -1,10 +1,10 @@
 import React from "react";
 
-function NextButton({ clickAction }) {
+function PrevButton({ onClick }) {
   return (
     <button
-      onClick={clickAction}
-      className="z-10 shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent right-4"
+      onClick={onClick}
+      className="z-10 shadow-xl cursor-pointer absolute top-1/2 w-auto p-2 transition duration-600 ease-out rounded-full bg-white hover:bg-transparent left-4"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -17,11 +17,11 @@ function NextButton({ clickAction }) {
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          d="M15.75 19.5 8.25 12l7.5-7.5"
         />
       </svg>
     </button>
   );
 }
 
-export default NextButton;
+export default PrevButton;

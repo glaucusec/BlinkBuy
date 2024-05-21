@@ -1,7 +1,19 @@
 import React from "react";
 
-function ColorButton({ onChange, checked, labelText, hexCode }) {
-  // use inline style, [dynamic classNamees] is not working with tailwind
+type ColorButtonProps = {
+  onChange: () => void;
+  checked: boolean;
+  labelText: string;
+  hexCode: string;
+};
+
+function ColorButton({
+  onChange,
+  checked,
+  labelText,
+  hexCode,
+}: ColorButtonProps) {
+  // use inline style, [dynamic classNames] is not working with tailwind
   const inlineStyle = {
     background: hexCode,
     borderColor: hexCode,

@@ -12,7 +12,7 @@ import MobileSideNav from "./MobileSideNav";
 import UserMenu from "./UserMenu";
 
 function Header() {
-  const [showMobileNav, setShowMobileNav] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
   return (
     <nav className="border-b border-solid grid grid-cols-3 lg:grid-cols-[3fr_2fr] lg:gap-26 sticky top-0 z-20 bg-white px-4 2xl:px-24 h-14 lg:h-16">
       <MobileSideNav

@@ -5,8 +5,28 @@ import { QueryContext } from "../../context/QueryContext";
 import { usePathname, useRouter } from "next/navigation";
 import { IconSearch, IconX } from "@tabler/icons-react";
 
+type QueryParams = {
+  priceRanges: string[];
+  colors: string[];
+  sizes: string[];
+  availability: string[];
+};
+
+type QueryContextProps = {
+  q: string;
+  queryChangeHandler: (newQuery: string) => void;
+  queryParams: QueryParams;
+  queryParamsChangeHandler: (
+    filterType: keyof QueryParams,
+    value: string
+  ) => void;
+  isChecked: (filterType: keyof QueryParams, value: string) => boolean;
+};
+
 export default function Search() {
-  const { q, queryChangeHandler } = useContext(QueryContext);
+  const { q, queryChangeHandler } = useContext(
+    QueryContext
+  ) as QueryContextProps;
 
   const router = useRouter();
   const pathname = usePathname();
@@ -20,7 +40,7 @@ export default function Search() {
     return () => clearTimeout(debounceTimeout);
   }, [inputValue]);
 
-  const searchInputChangeHandler = (e) => {
+  const searchInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value && pathname !== "/search") {
       router.push("/search");
     }

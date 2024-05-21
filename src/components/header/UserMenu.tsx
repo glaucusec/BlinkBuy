@@ -15,7 +15,7 @@ const DynamicAuthModal = dynamic(() => import("../user/AuthModal"), {
 });
 
 function UserMenu() {
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
 
   const handleCloseModal = () => {
     setShowAuthModal(false);
