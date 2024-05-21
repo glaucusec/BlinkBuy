@@ -1,22 +1,22 @@
 import React from "react";
 
-function AngleNextIcon({ stroke }) {
+function ChevronDownIcon({ customclassName }: { customclassName: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth="1.5"
-      stroke={stroke ? stroke : "currentColor"}
-      className="w-6 h-6"
+      stroke="white"
+      className={`w-6 h-6 ${customclassName}`}
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="m8.25 4.5 7.5 7.5-7.5 7.5"
+        d="m19.5 8.25-7.5 7.5-7.5-7.5"
       />
     </svg>
   );
 }
 
-export default AngleNextIcon;
+export default ChevronDownIcon;
