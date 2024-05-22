@@ -1,6 +1,14 @@
 import React from "react";
 
-function PopularItemCard({ image__url, image__alt__text }) {
+type PopularItemCardType = {
+  image__url: string;
+  image__alt__text: string;
+};
+
+function PopularItemCard({
+  image__url,
+  image__alt__text,
+}: PopularItemCardType) {
   return (
     <section className="px-2 rounded-lg">
       <a>

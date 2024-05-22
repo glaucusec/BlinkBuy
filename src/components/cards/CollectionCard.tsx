@@ -1,7 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-function CollectionCard({ card__image__url, card__title }) {
+type CollectionCardType = {
+  card__image__url: string;
+  card__title: string;
+};
+
+function CollectionCard({ card__image__url, card__title } : CollectionCardType) {
   return (
     <div className="flex collection-container relative">
       <figure className="collection-image flex">
