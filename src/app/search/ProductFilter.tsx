@@ -10,13 +10,9 @@ function ProductFilter() {
       <div className="filter-header pb-4 border-b border-b-gray-200">
         <h1 className="text-xl font-semibold">Filter</h1>
       </div>
-      {/* filter price range */}
       <FilterPrice />
-      {/* filter color */}
       <FilterColor />
-      {/* filter size */}
       <FilterSize />
-      {/* filter availability */}
       <FilterAvailability />
     </div>
   );

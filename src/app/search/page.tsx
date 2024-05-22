@@ -6,9 +6,11 @@ import SortBy from "./components/SortBy";
 import { QueryContext } from "../../context/QueryContext";
 import { titleCase } from "../../utils/utils";
 
+import { QueryContextPropsType } from "../../lib/types";
+
 function SearchPage() {
-  const [totalItems, setTotalItems] = useState();
-  const { q } = useContext(QueryContext);
+  const [totalItems, setTotalItems] = useState<number | null>(null);
+  const { q } = useContext<QueryContextPropsType>(QueryContext);
   const capitalizedQuery = titleCase(q);
 
   return (

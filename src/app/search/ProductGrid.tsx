@@ -6,15 +6,20 @@ import React, {
   useCallback,
   useContext,
 } from "react";
+import { RotatingLines } from "react-loader-spinner";
+
 import Product from "../../components/Product";
-import SpinnerIOS from "../../components/spinner/SpinnerIOS";
-
 import useProductsFetch from "../../hooks/useProductsFetch";
-
 import { QueryContext } from "../../context/QueryContext";
 
-function ProductGrid({ setTotalItems }) {
-  const { q, queryParams } = useContext(QueryContext);
+import { QueryContextPropsType } from "../../lib/types";
+
+function ProductGrid({
+  setTotalItems,
+}: {
+  setTotalItems: React.Dispatch<React.SetStateAction<number | null>>;
+}) {
+  const { q, queryParams } = useContext<QueryContextPropsType>(QueryContext);
   const [pageNumber, setPageNumber] = useState(1);
   const [products, hasMore, loading, totalHits, error] =
     useProductsFetch(pageNumber);
@@ -50,7 +55,6 @@ function ProductGrid({ setTotalItems }) {
     setPageNumber(1);
     window.scroll({ top: 0, behavior: "smooth" });
   }, [q, queryParams]);
-
 
   if (products.length == 0)
     return (
@@ -92,7 +96,12 @@ function ProductGrid({ setTotalItems }) {
       })}
       {loading && (
         <div className="col-span-2 md:col-span-3 xl:col-span-4 flex justify-center items-center">
-          <SpinnerIOS />
+          <RotatingLines
+            visible={true}
+            height={35}
+            width={30}
+            strokeColor="grey"
+          />
         </div>
       )}
 
