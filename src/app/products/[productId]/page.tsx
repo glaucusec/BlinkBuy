@@ -3,7 +3,24 @@ import ImageGallery from "./ImageGallery";
 import ProductPanel from "./ProductPanel";
 import prisma from "../../../lib/prisma";
 
-async function getProductData(productId) {
+type DataType = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  title: string;
+  discountedPrice: number;
+  handle?: string;
+  reviewsAverage?: number;
+  reviewsCount?: number;
+  price: number;
+  isActive: boolean;
+  isBestSeller?: boolean;
+  published?: boolean;
+  images: { url: string }[];
+  sizes: { name: string }[];
+};
+
+async function getProductData(productId: string): Promise<DataType | null> {
   // fetch the images;
   const data = await prisma.product.findUnique({
     where: { id: productId },
@@ -12,16 +29,19 @@ async function getProductData(productId) {
       sizes: { select: { name: true } },
     },
   });
-  const images = data.images.map((image) => {
-    return image.url;
-  });
+
+  if (!data) {
+    return null;
+  }
+
+  const images = data.images.map((image) => image.url);
   const sizes = data.sizes.map((size) => size.name);
 
-  const product = { ...data, sizes, images };
+  const product: DataType = { ...data, sizes, images };
   return product;
 }
 
-async function page({ params }) {
+async function page({ params }: { params: { productId: string } }) {
   const { productId } = params;
   const product = await getProductData(productId);
   const images = product.images;

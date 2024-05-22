@@ -9,8 +9,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function ImageGallery({ images }) {
-  const [sliderRef, setSliderRef] = useState(null);
+function ImageGallery({ images }: { images: string[] }) {
+  const [sliderRef, setSliderRef] = useState<Slider | null>(null);
   const settings = {
     dots: false,
     inifinite: true,
@@ -21,8 +21,8 @@ function ImageGallery({ images }) {
   };
   return (
     <div className="slider-container relative">
-      <PrevButton clickAction={sliderRef?.slickPrev} />
-      <NextButton clickAction={sliderRef?.slickNext} />
+      <PrevButton onClick={sliderRef?.slickPrev} />
+      <NextButton onClick={sliderRef?.slickNext} />
       <Slider ref={setSliderRef} {...settings}>
         {images.map((image, index) => {
           return (
@@ -32,6 +32,7 @@ function ImageGallery({ images }) {
                 width={800}
                 height={800}
                 style={{ objectFit: "contain" }}
+                alt="Image"
               />
             </div>
           );
