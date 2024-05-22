@@ -3,8 +3,8 @@ import React from "react";
 type SizeButtonProps = {
   size: string;
   onClick: () => void;
-  checked: boolean;
-  available: boolean;
+  checked?: boolean;
+  available?: boolean;
 };
 
 function SizeButton({

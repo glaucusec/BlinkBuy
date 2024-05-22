@@ -1,6 +1,10 @@
 import React from "react";
 
-function PrevButton({ onClick }) {
+type PrevButtonProps = {
+  onClick: (() => void) | undefined;
+};
+
+function PrevButton({ onClick }: PrevButtonProps) {
   return (
     <button
       onClick={onClick}

@@ -1,7 +1,12 @@
 import React from "react";
 import { IconCarambola } from "@tabler/icons-react";
 
-function ReviewRating({ reviewsAverage, reviewsCount }) {
+type ReviewRatingProps = {
+  reviewsAverage: number;
+  reviewsCount: number;
+};
+
+function ReviewRating({ reviewsAverage, reviewsCount }: ReviewRatingProps) {
   return (
     <span className="flex flex-rows justify-center items-center gap-1 border rounded-xl p-1 text-xs font-semibold">
       <span>

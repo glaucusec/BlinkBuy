@@ -1,7 +1,7 @@
 import React from "react";
 
 type NextButtonProps = {
-  onClick: () => void;
+  onClick: (() => void) | undefined;
 };
 
 function NextButton({ onClick }: NextButtonProps) {
