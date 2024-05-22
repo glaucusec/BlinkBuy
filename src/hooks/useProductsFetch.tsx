@@ -3,7 +3,7 @@
 import { useEffect, useState, useContext } from "react";
 import { QueryContext } from "../context/QueryContext";
 
-function useProductsFetch(pageNumber) {
+function useProductsFetch(pageNumber: number): void {
   const { q, queryParams } = useContext(QueryContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);

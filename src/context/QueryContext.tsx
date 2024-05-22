@@ -1,17 +1,22 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-export const QueryContext = createContext("");
+import { QueryParamsType, QueryContextPropsType } from "../lib/types";
 
-export function QueryProvider(props) {
+export const QueryContext = createContext<QueryContextPropsType | undefined>(
+  undefined
+);
+
+export function QueryProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const [q, setQuery] = useState(searchParams.get("q") || "");
 
   // helper function for parsing the queryParams
-  const splitQueryParam = (param) => (param ? param.split(",") : []);
+  const splitQueryParam = (param: string | null) =>
+    param ? param.split(",") : [];
 
   const [queryParams, setQueryParams] = useState({
     priceRanges: splitQueryParam(searchParams.get("priceRanges")),
@@ -20,7 +25,10 @@ export function QueryProvider(props) {
     availability: splitQueryParam(searchParams.get("availability")),
   });
 
-  const queryParamsChangeHandler = (filterType, value) => {
+  const queryParamsChangeHandler = (
+    filterType: keyof QueryParamsType,
+    value: string
+  ) => {
     setQueryParams((prevState) => ({
       ...prevState,
       [filterType]: prevState[filterType].includes(value)
@@ -29,11 +37,11 @@ export function QueryProvider(props) {
     }));
   };
 
-  const queryChangeHandler = (newQuery) => {
+  const queryChangeHandler = (newQuery: string) => {
     setQuery(newQuery);
   };
 
-  const isChecked = (filterType, value) =>
+  const isChecked = (filterType: keyof QueryParamsType, value: string) =>
     queryParams[filterType].includes(value);
 
   useEffect(() => {
@@ -44,7 +52,7 @@ export function QueryProvider(props) {
           acc[key] = value.join(",");
           return acc;
         },
-        { q: q } // default object, url will have query as the first parameter
+        { q: q } as Record<string, string> // default object, url will have query as the first parameter
       );
 
     const newSearchParams = new URLSearchParams(nonEmptyParams).toString();
@@ -52,11 +60,10 @@ export function QueryProvider(props) {
     if (pathname == "/search")
       router.push(`/search?${newSearchParams}`, {
         scroll: false,
-        shallow: true,
       });
   }, [queryParams, q]);
 
-  const propContext = {
+  const propContext: QueryContextPropsType = {
     q,
     queryChangeHandler,
     queryParams,
@@ -66,7 +73,7 @@ export function QueryProvider(props) {
 
   return (
     <QueryContext.Provider value={propContext}>
-      {props.children}
+      {children}
     </QueryContext.Provider>
   );
 }
