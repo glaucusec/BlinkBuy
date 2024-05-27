@@ -1,20 +1,42 @@
 "use client";
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "../components/ShoppingCart";
 import { ReactNode, createContext, useContext, useState } from "react";
 
-export const CartContext = createContext({});
+type CartProviderProps = {
+  children: ReactNode;
+};
 
-export default function CartProvider({ children }: { children: ReactNode }) {
-  const [cartOpen, setCartOpen] = useState(false);
+type CartProviderContext = {
+  cartOpen: boolean;
+  toggleCart: (bool: boolean) => void;
+  cartItemCount: number;
+};
 
-  const value = {
-    cartOpen,
-    setCartOpen,
+export const CartContext = createContext({} as CartProviderContext);
+
+export default function CartProvider({ children }: CartProviderProps) {
+  const [cartOpen, setCartOpen] = useState<boolean>(false);
+
+  const toggleCart = (bool: boolean) => {
+    setCartOpen(bool);
   };
+
+  const cartItemCount = 4;
+
+  const value: CartProviderContext = {
+    cartOpen,
+    toggleCart,
+    cartItemCount,
+  };
+
   return (
     <CartContext.Provider value={value}>
       {children}
-      <ShoppingCart />
+      <ShoppingCart
+        cartOpen={cartOpen}
+        toggleCart={toggleCart}
+        cartItemCount={cartItemCount}
+      />
     </CartContext.Provider>
   );
 }
