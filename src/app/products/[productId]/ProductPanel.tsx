@@ -1,16 +1,29 @@
 import React from "react";
 import DiscountCard from "../../../components/cards/DiscountCard";
-import SizeButton from "../../../components/buttons/SizeButton";
 import ReviewRating from "../../../components/badges/ReviewRating";
 import { calculateDiscountPercentage } from "../../../utils/utils";
 import HighLights from "./components/HighLights";
+import SelectSizeAndCart from "./components/SelectSizeAndCart";
 
-function ProductPanel({ product }) {
+type ProductType = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  title: string;
+  discountedPrice: number;
+  handle?: string | null;
+  reviewsAverage?: number | null;
+  reviewsCount?: number | null;
+  price: number;
+  isActive: boolean | null;
+  isBestSeller?: boolean | null;
+  published?: boolean | null;
+  images: string[];
+  sizes: string[];
+};
+
+function ProductPanel({ product }: { product: ProductType }) {
   const sizes = product.sizes;
-
-  const isSizeAvailable = (size) => {
-    return sizes.includes(size);
-  };
 
   const discountPercentage = calculateDiscountPercentage(
     product.price,
@@ -58,33 +71,7 @@ function ProductPanel({ product }) {
           Sale ends in: 09h: 42m : 21s
         </span>
       </div>
-      <div className="size-section">
-        <div className="flex flex-row justify-between mb-3">
-          <h1 className="text-xl font-semibold">Select Size</h1>
-          <p>Size Guide</p>
-        </div>
-        <div className="flex flex-row gap-2 mb-3">
-          {["S", "M", "L", "XL", "XXL", "XXXL"].map((size, index) => {
-            return (
-              <SizeButton
-                key={index}
-                size={size}
-                available={isSizeAvailable(size)}
-              />
-            );
-          })}
-        </div>
-      </div>
-      <div className="bg-[#f0e4b6] mb-4 py-3 flex justify-center items-center">
-        <span className="text-blinkblue font-semibold text-sm">
-          Lowest Price in the last <span className="font-bold">30 days</span>
-        </span>
-      </div>
-      <div className="product-add-to-cart-button mb-4">
-        <button className="p-4 border border-blinkblue bg-blinkblue rounded-full w-full">
-          <span className="text-white text-lg font-bold">Add to Cart</span>
-        </button>
-      </div>
+      <SelectSizeAndCart sizes={sizes} />
       <HighLights />
     </div>
   );
