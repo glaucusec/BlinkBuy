@@ -1,32 +1,49 @@
 "use client";
-import ShoppingCart from "../components/ShoppingCart";
-import { ReactNode, createContext, useContext, useState } from "react";
+import ShoppingCart from "../components/cart/ShoppingCart";
+import { ReactNode, createContext, useState, useReducer } from "react";
+import { ProductType } from "../lib/types";
+import { ACTIONS, INITIAL_STATE, cartReducer } from "../reducers/cartReducer";
 
 type CartProviderProps = {
   children: ReactNode;
 };
 
+type EssentialProductType = Pick<
+  ProductType,
+  "id" | "title" | "price" | "discountedPrice"
+> & { image: string };
+
 type CartProviderContext = {
   cartOpen: boolean;
   toggleCart: (bool: boolean) => void;
-  cartItemCount: number;
 };
 
 export const CartContext = createContext({} as CartProviderContext);
 
 export default function CartProvider({ children }: CartProviderProps) {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+  console.log(state.cartItems);
 
   const toggleCart = (bool: boolean) => {
     setCartOpen(bool);
   };
-
-  const cartItemCount = 4;
+  const addItemToCart = (
+    product: EssentialProductType,
+    productSize: string
+  ) => {
+    dispatch({
+      type: ACTIONS.ADD_PRODUCT,
+      payload: { ...product, size: productSize },
+    });
+  };
 
   const value: CartProviderContext = {
     cartOpen,
     toggleCart,
-    cartItemCount,
+    addItemToCart,
+    cartItemsCount: state.cartItemsCount,
+    cartItems: state.cartItems,
   };
 
   return (
@@ -35,7 +52,7 @@ export default function CartProvider({ children }: CartProviderProps) {
       <ShoppingCart
         cartOpen={cartOpen}
         toggleCart={toggleCart}
-        cartItemCount={cartItemCount}
+        cartItemsCount={state.cartItemsCount}
       />
     </CartContext.Provider>
   );
