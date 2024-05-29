@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 function CartFooter() {
+  const { cartItems } = useContext(CartContext);
+  if (cartItems.length <= 0) {
+    return <></>;
+  }
+
   return (
-    <div className="w-full bg-white border-t-2">
+    <div className="w-full bg-white border-t-2 mt-1">
       <div className="px-8 py-4 flex flex-row justify-between items-center">
         <div className="flex flex-col gap-1">
           <span className="text-xl font-semibold">₹1999</span>

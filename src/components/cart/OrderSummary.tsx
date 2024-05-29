@@ -22,7 +22,7 @@ function OrderSummary() {
       </div>
       <span className="block border-2 border-b-black border-dotted mb-2"></span>
       <div className="flex justify-between mb-2">
-      <p className="text-md font-semibold">Total Payable</p>
+        <p className="text-md font-semibold">Total Payable</p>
         <p></p>
       </div>
     </div>

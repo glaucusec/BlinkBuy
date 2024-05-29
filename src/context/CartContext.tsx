@@ -1,21 +1,36 @@
 "use client";
 import ShoppingCart from "../components/cart/ShoppingCart";
-import { ReactNode, createContext, useState, useReducer } from "react";
-import { ProductType } from "../lib/types";
+import {
+  ReactNode,
+  createContext,
+  useState,
+  useReducer,
+  useEffect,
+} from "react";
 import { ACTIONS, INITIAL_STATE, cartReducer } from "../reducers/cartReducer";
 
 type CartProviderProps = {
   children: ReactNode;
 };
 
-type EssentialProductType = Pick<
-  ProductType,
-  "id" | "title" | "price" | "discountedPrice"
-> & { image: string };
+type CartItemType = {
+  id: string;
+  title: string;
+  price: number;
+  discountedPrice: number;
+  image: string;
+  size: string;
+};
 
 type CartProviderContext = {
   cartOpen: boolean;
   toggleCart: (bool: boolean) => void;
+  addItemToCart: (product: CartItemType, productSize: string) => void;
+  removeItemFromCart: (id: string, size: string) => void;
+  incrementItemQuantity: (id: string, size: string) => void;
+  decrementItemQuantity: (id: string, size: string) => void;
+  cartItemsCount: number;
+  cartItems: CartItemType[];
 };
 
 export const CartContext = createContext({} as CartProviderContext);
@@ -23,18 +38,46 @@ export const CartContext = createContext({} as CartProviderContext);
 export default function CartProvider({ children }: CartProviderProps) {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
-  console.log(state.cartItems);
+
+  useEffect(() => {
+    const cartStorage = localStorage.getItem("cart-storage");
+    if (!cartStorage || cartStorage == null) return;
+    const storedCartItems = JSON.parse(cartStorage);
+    if (storedCartItems && storedCartItems.cartItems.length > 0)
+      dispatch({ type: "default", payload: storedCartItems });
+  }, []);
+
+  useEffect(() => {
+    if (state.cartItems.length >= 0)
+      localStorage.setItem("cart-storage", JSON.stringify(state));
+  }, [state]);
 
   const toggleCart = (bool: boolean) => {
     setCartOpen(bool);
   };
-  const addItemToCart = (
-    product: EssentialProductType,
-    productSize: string
-  ) => {
+
+  const addItemToCart = (product: CartItemType, productSize: string) => {
     dispatch({
       type: ACTIONS.ADD_PRODUCT,
       payload: { ...product, size: productSize },
+    });
+  };
+
+  const removeItemFromCart = (id: string, size: string) => {
+    dispatch({ type: ACTIONS.REMOVE_PRODUCT, payload: { id: id, size: size } });
+  };
+
+  const incrementItemQuantity = (id: string, size: string) => {
+    dispatch({
+      type: ACTIONS.INCREMENT_PRODUCT_QUANTITY,
+      payload: { id: id, size: size },
+    });
+  };
+
+  const decrementItemQuantity = (id: string, size: string) => {
+    dispatch({
+      type: ACTIONS.DECREMENT_PRODUCT_QUANTITY,
+      payload: { id: id, size: size },
     });
   };
 
@@ -42,6 +85,9 @@ export default function CartProvider({ children }: CartProviderProps) {
     cartOpen,
     toggleCart,
     addItemToCart,
+    removeItemFromCart,
+    incrementItemQuantity,
+    decrementItemQuantity,
     cartItemsCount: state.cartItemsCount,
     cartItems: state.cartItems,
   };
@@ -49,11 +95,7 @@ export default function CartProvider({ children }: CartProviderProps) {
   return (
     <CartContext.Provider value={value}>
       {children}
-      <ShoppingCart
-        cartOpen={cartOpen}
-        toggleCart={toggleCart}
-        cartItemsCount={state.cartItemsCount}
-      />
+      <ShoppingCart cartOpen={cartOpen} />
     </CartContext.Provider>
   );
 }

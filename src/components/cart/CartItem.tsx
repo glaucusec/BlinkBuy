@@ -1,8 +1,20 @@
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-function CartItem({ cartItem }) {
+type CartItemType = {
+  id: string;
+  title: string;
+  price: number;
+  discountedPrice: number;
+  image: string;
+};
+
+function CartItem({ cartItem }: { cartItem: CartItemType }) {
+  const { removeItemFromCart, incrementItemQuantity, decrementItemQuantity } =
+    useContext(CartContext);
+
   return (
     <div className="grid grid-cols-[3fr_7fr] gap-3 border-b-2 py-2">
       <section>
@@ -45,17 +57,30 @@ function CartItem({ cartItem }) {
         <div className="flex flex-row justify-between items-center">
           <section className="flex flex-row">
             <div className="border rounded-md px-4 py-1 flex flex-row gap-6">
-              <button className="">
+              <button
+                onClick={() =>
+                  decrementItemQuantity(cartItem.id, cartItem.size)
+                }
+              >
                 <IconMinus width={15} />
               </button>
-              <span>{cartItem.quantity}</span>
-              <button className="">
+              <span className="select-none">{cartItem.quantity}</span>
+              <button
+                onClick={() =>
+                  incrementItemQuantity(cartItem.id, cartItem.size)
+                }
+              >
                 <IconPlus width={15} />
               </button>
             </div>
           </section>
           <section>
-            <span className="font-medium text-sm text-blue-800 underline cursor-pointer">Remove</span>
+            <span
+              onClick={() => removeItemFromCart(cartItem.id, cartItem.size)}
+              className="font-medium text-sm text-blue-800 underline cursor-pointer select-none"
+            >
+              Remove
+            </span>
           </section>
         </div>
       </section>
