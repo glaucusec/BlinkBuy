@@ -1,5 +1,3 @@
-import Product from "../components/Product";
-
 const bestSellerProducts = [
   {
     product__id: 1,
