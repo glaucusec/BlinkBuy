@@ -40,5 +40,6 @@ next-env.d.ts
 prisma/migrations
 
 # test
-/src/tests
-/src/app/test
+test
+
+/trash

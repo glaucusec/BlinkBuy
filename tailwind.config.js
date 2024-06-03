@@ -29,12 +29,38 @@ module.exports = {
       nunito: ["Nunito", "sans-serif"],
     },
     extend: {
+      animation: {
+        leftToRightSlide: "leftToRightSlide .3s ease",
+        rightToLeftSlide: "rightToLeftSlide .3s ease-out",
+      },
+      keyframes: {
+        leftToRightSlide: {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
+        rightToLeftSlide: {
+          "0%": {
+            transform: "translateX(100%)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
+      },
       fontSize: {
         xxs: ["0.65rem", "14px"],
       },
       colors: {
         blinkblue: "#242f66",
         blinkSizeBtn: "#faf6e8",
+        reviewStar: "#d8ba43",
+      },
+      screens: {
+        "3xl": "1620px",
       },
     },
   },
