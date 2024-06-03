@@ -8,24 +8,12 @@ import {
   useEffect,
 } from "react";
 import { ACTIONS, INITIAL_STATE, cartReducer } from "../reducers/cartReducer";
-
-type CartProviderProps = {
-  children: ReactNode;
-};
-
-type CartItemType = {
-  id: string;
-  title: string;
-  price: number;
-  discountedPrice: number;
-  image: string;
-  size: string;
-};
+import { CartItemType } from "../lib/types";
 
 type CartProviderContext = {
   cartOpen: boolean;
   toggleCart: (bool: boolean) => void;
-  addItemToCart: (product: CartItemType, productSize: string) => void;
+  addItemToCart: (product: CartItemTypeExceptQuantity, productSize: string) => void;
   removeItemFromCart: (id: string, size: string) => void;
   incrementItemQuantity: (id: string, size: string) => void;
   decrementItemQuantity: (id: string, size: string) => void;
@@ -33,9 +21,11 @@ type CartProviderContext = {
   cartItems: CartItemType[];
 };
 
+type CartItemTypeExceptQuantity = Omit<CartItemType, "quantity">;
+
 export const CartContext = createContext({} as CartProviderContext);
 
-export default function CartProvider({ children }: CartProviderProps) {
+export default function CartProvider({ children }: { children: ReactNode }) {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
 
@@ -56,7 +46,7 @@ export default function CartProvider({ children }: CartProviderProps) {
     setCartOpen(bool);
   };
 
-  const addItemToCart = (product: CartItemType, productSize: string) => {
+  const addItemToCart = (product: CartItemTypeExceptQuantity, productSize: string) => {
     dispatch({
       type: ACTIONS.ADD_PRODUCT,
       payload: { ...product, size: productSize },

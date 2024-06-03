@@ -4,9 +4,16 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { QueryParamsType, QueryContextPropsType } from "../lib/types";
 
-export const QueryContext = createContext<QueryContextPropsType | undefined>(
-  undefined
-);
+const initialQueryState: QueryContextPropsType = {
+  q: "",
+  queryChangeHandler: () => {},
+  queryParams: { priceRanges: [], colors: [], availability: [], sizes: [] },
+  queryParamsChangeHandler: () => {},
+  isChecked: () => false,
+};
+
+export const QueryContext =
+  createContext<QueryContextPropsType>(initialQueryState);
 
 export function QueryProvider({ children }: { children: ReactNode }) {
   const router = useRouter();

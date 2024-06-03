@@ -18,7 +18,6 @@ export const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [storedValue, setValue, removeValue] = useLocalStorage("user", "");
-  console.log("storedvalue", storedValue);
 
   useEffect(() => {
     !storedValue ? setAuthenticated(false) : setAuthenticated(true);
@@ -29,6 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setValueHandler: (newValue: unknown) => setValue(newValue),
     removeValueHandler: () => removeValue(),
   };
+
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
   );
