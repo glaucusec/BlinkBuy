@@ -26,7 +26,7 @@ function Register() {
           Already registered? Sign in to continue.
         </p>
         <Link
-          href="/user/sign_in"
+          href="/sign_in"
           className="rounded-full border-2 px-4 py-1 border-white text-white hover:bg-blue-950"
         >
           SIGN IN

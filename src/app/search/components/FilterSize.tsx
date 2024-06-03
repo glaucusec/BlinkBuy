@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import FilterSubHeading from "./FilterSubHeading";
-import SizeButton from "../../../components/buttons/SizeButton";
+import SizeButton2 from "../../../components/buttons/SizeButton2";
 import { QueryContext } from "../../../context/QueryContext";
 
 import { QueryContextPropsType } from "../../../lib/types";
@@ -28,7 +28,7 @@ function FilterSize() {
               key={size.id}
               className="filter-size-item flex items-center justify-center"
             >
-              <SizeButton
+              <SizeButton2
                 size={size.labelText}
                 checked={isChecked("sizes", size.query)}
                 onClick={() => queryParamsChangeHandler("sizes", size.query)}

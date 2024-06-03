@@ -1,26 +1,10 @@
 import React from "react";
+import { ProductType } from "../../../lib/types";
 import DiscountCard from "../../../components/cards/DiscountCard";
 import ReviewRating from "../../../components/badges/ReviewRating";
 import { calculateDiscountPercentage } from "../../../utils/utils";
 import HighLights from "./components/HighLights";
 import SelectSizeAndCart from "./components/SelectSizeAndCart";
-
-type ProductType = {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  title: string;
-  discountedPrice: number;
-  handle?: string | null;
-  reviewsAverage?: number | null;
-  reviewsCount?: number | null;
-  price: number;
-  isActive: boolean | null;
-  isBestSeller?: boolean | null;
-  published?: boolean | null;
-  images: string[];
-  sizes: string[];
-};
 
 function ProductPanel({ product }: { product: ProductType }) {
   const sizes = product.sizes;
@@ -44,9 +28,9 @@ function ProductPanel({ product }: { product: ProductType }) {
             </span>
           </div>
           <div className="flex flex-row gap-4 items-center">
-            <span className="text-gray-500">
+            <p className="text-gray-500">
               MRP: <span className="line-through">₹1999</span>
-            </span>
+            </p>
             <span className="text-gray-500">Inclusive of all taxes</span>
           </div>
         </div>
@@ -71,7 +55,7 @@ function ProductPanel({ product }: { product: ProductType }) {
           Sale ends in: 09h: 42m : 21s
         </span>
       </div>
-      <SelectSizeAndCart sizes={sizes} />
+      <SelectSizeAndCart product={product} sizes={sizes} />
       <HighLights />
     </div>
   );

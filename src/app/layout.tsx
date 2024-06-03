@@ -1,13 +1,11 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "sonner";
-
-import { QueryProvider } from "../context/QueryContext";
 import React, { ReactNode, Suspense } from "react";
-
-import ScrollingText from "../home/ScrollingText";
+import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import Header from "../components/header/Header";
 import Footer from "../home/Footer";
+import ScrollingText from "../home/ScrollingText";
+import { QueryProvider } from "../context/QueryContext";
 import { AuthProvider } from "../context/AuthContext";
 import CartProvider from "../context/CartContext";
 

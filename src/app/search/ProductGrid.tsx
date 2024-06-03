@@ -24,9 +24,9 @@ function ProductGrid({
   const [products, hasMore, loading, totalHits, error] =
     useProductsFetch(pageNumber);
 
-  const observer = useRef();
+  const observer = useRef<IntersectionObserver | null>(null);
   const lastElementRef = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
@@ -46,17 +46,18 @@ function ProductGrid({
     [loading, hasMore]
   );
 
-  // Update
+  // Update total items
   useEffect(() => {
     setTotalItems(totalHits);
-  }, [totalHits]);
+  }, [totalHits, setTotalItems]);
 
+  // Reset page number and scroll to top on query change
   useEffect(() => {
     setPageNumber(1);
     window.scroll({ top: 0, behavior: "smooth" });
   }, [q, queryParams]);
 
-  if (products.length == 0)
+  if (!loading && products.length === 0)
     return (
       <div className="flex flex-col items-center">
         <section className="text-xl">No results found for '{q}'</section>
@@ -69,7 +70,7 @@ function ProductGrid({
 
   return (
     <div className="search-products-grid grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-4 overflow-y-auto no-scrollbar">
-      {products.map((p, index, products) => {
+      {products.map((p, index) => {
         if (index === products.length - 1) {
           return (
             <Product
@@ -95,13 +96,8 @@ function ProductGrid({
         );
       })}
       {loading && (
-        <div className="col-span-2 md:col-span-3 xl:col-span-4 flex justify-center items-center">
-          <RotatingLines
-            visible={true}
-            height={35}
-            width={30}
-            strokeColor="grey"
-          />
+        <div className="col-span-2 md:col-span-3 xl:col-span-4 flex justify-center">
+          <RotatingLines visible={true} width="30" strokeColor="grey" />
         </div>
       )}
 

@@ -1,16 +1,37 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ProductSize from "./ProductSize";
 import LowestPriceBadge from "./LowestPriceBadge";
+import { CartContext } from "../../../../context/CartContext";
+import { ProductType } from "../../../../lib/types";
 
-function SelectSizeAndCart({ sizes }: { sizes: string[] }) {
+type SelectSizeAndCartProps = {
+  sizes: string[];
+  product: ProductType;
+};
+
+function SelectSizeAndCart({ sizes, product }: SelectSizeAndCartProps) {
+  const { addItemToCart } = useContext(CartContext);
   const [selectedSize, setSelectedSize] = useState("");
 
   const isSizeAvailable = (size: string) => {
     return sizes.includes(size);
   };
 
-  const changeSizeHandler = (e) => {
+  const addToCartHandler = () => {
+    // send the relevant product data for the cart items.
+    const newProduct = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      discountedPrice: product.discountedPrice,
+      image: product.images[0],
+      size: selectedSize,
+    };
+    addItemToCart(newProduct, selectedSize);
+  };
+
+  const changeSizeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedSize(e.target.value);
   };
 
@@ -29,7 +50,10 @@ function SelectSizeAndCart({ sizes }: { sizes: string[] }) {
       </div>
       <LowestPriceBadge />
       <div className="product-add-to-cart-button mb-4">
-        <button className="p-4 border border-blinkblue bg-blinkblue rounded-full w-full">
+        <button
+          onClick={addToCartHandler}
+          className="p-4 border border-blinkblue bg-blinkblue rounded-full w-full"
+        >
           <span className="text-white text-lg font-bold">Add to Cart</span>
         </button>
       </div>

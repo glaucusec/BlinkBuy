@@ -13,7 +13,10 @@ type ResponseType = {
   success: boolean;
   error: boolean;
   message: string;
-  data: object;
+  data?: DataType | undefined;
+};
+type DataType = {
+  userId: string;
 };
 
 const errorClassName = " text-red-500 font-semibold";
@@ -57,7 +60,7 @@ function LoginPage() {
             // on successful login, update the authcontext
 
             if (success) {
-              setValueHandler(data.userId);
+              setValueHandler(data?.userId);
               router.push("/");
             }
           }}
