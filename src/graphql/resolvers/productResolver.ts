@@ -21,22 +21,22 @@ export type Size = {
 };
 
 export type ProductResponseType = ProductType & {
-  images?: Image[];
-  sizes?: Size[];
+  images: Image[];
+  sizes: Size[];
 };
 
 export type GQLProductsArgType = {
-  q?: string;
-  prices?: string[];
-  colors?: string[];
-  sizes?: string[];
-  take?: number;
-  page?: number;
+  q: string;
+  prices: string[];
+  colors: string[];
+  sizes: string[];
+  take: number;
+  page: number;
 };
 
 export const GQLResolver = {
   Query: {
-    products: async (_, args: GQLProductsArgType) => {
+    products: async (_: unknown, args: GQLProductsArgType) => {
       const { q, prices, colors, sizes, take, page } = args;
       const whereClause = {
         tags:
@@ -61,7 +61,7 @@ export const GQLResolver = {
             : {},
       };
 
-      const priceRangeFilters = {
+      const priceRangeFilters: Record<string, { lt?: number; gt?: number }> = {
         "0-500": { lt: 500 },
         "500-1000": { gt: 500, lt: 1000 },
         "1001-1500": { gt: 1001, lt: 1500 },
@@ -75,7 +75,7 @@ export const GQLResolver = {
           result.push({ discountedPrice: filterCriteria });
         }
         return result;
-      }, []);
+      }, [] as { discountedPrice: { lt?: number; gt?: number } }[]);
 
       // fetch the products related
       const products = await prisma.product.findMany({
@@ -99,7 +99,7 @@ export const GQLResolver = {
         skip: page * take - take,
       });
 
-      const formattedProducts = products.map((product: ProductResponseType) => {
+      const formattedProducts = products.map((product) => {
         const formattedUrls = product.images.map((image) => image.url);
         const formattedSizes = product.sizes.map((size) => size.name);
         return {
@@ -118,7 +118,7 @@ export const GQLResolver = {
         totalHits: totalNumberOfProducts,
       };
     },
-    product: async (_, args: { id: string }) => {
+    product: async (_: { _: unknown }, args: { id: string }) => {
       const { id } = args;
       const product = await prisma.product.findUnique({
         where: {
