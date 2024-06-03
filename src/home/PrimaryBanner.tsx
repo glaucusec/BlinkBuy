@@ -24,8 +24,8 @@ function PrimaryBanner() {
   };
   return (
     <div id="primary-banner-section" className="my-4 relative ">
-      <LeftButton clickAction={sliderRef?.slickPrev} />
-      <RightButton clickAction={sliderRef?.slickNext} />
+      <LeftButton onClick={sliderRef?.slickPrev} />
+      <RightButton onClick={sliderRef?.slickNext} />
 
       <Slider ref={setSliderRef} {...settings}>
         {images.map((img, index) => {

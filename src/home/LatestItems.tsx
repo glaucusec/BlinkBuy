@@ -7,8 +7,8 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 
 import Product from "../components/Product";
-import LeftButton from "../components/buttons/PrevButton";
-import RightButton from "../components/buttons/NextButton";
+import PrevButton from "../components/buttons/PrevButton";
+import NextButton from "../components/buttons/NextButton";
 
 import products from "../data/LatestItemsData";
 
@@ -62,8 +62,8 @@ function LatestItems() {
       </div>
 
       <div className="latest-items-wrapper relative">
-        <LeftButton clickAction={sliderRef?.slickPrev} />
-        <RightButton clickAction={sliderRef?.slickNext} />
+        <PrevButton onClick={sliderRef?.slickPrev} />
+        <NextButton onClick={sliderRef?.slickNext} />
 
         <Slider ref={setSliderRef} {...settings}>
           {products.map((p) => {

@@ -80,8 +80,8 @@ function PopularItems() {
       </div>
       {/* For screen sizes 'sm' to 'lg' (excluding 'lg') */}
       <div className="lg:hidden relative">
-        <LeftButton clickAction={sliderRef?.slickPrev} />
-        <RightButton clickAction={sliderRef?.slickNext} />
+        <LeftButton onClick={sliderRef?.slickPrev} />
+        <RightButton onClick={sliderRef?.slickNext} />
         <Slider ref={setSliderRef} {...settings}>
           {images.map((image, index, arr) => {
             return (
