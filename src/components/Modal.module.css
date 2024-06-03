@@ -7,7 +7,11 @@
   background-color: rgba(0, 0, 0, 0.5);
   animation: none;
 }
-.dialog[open] {
+.dialog {
+  display: flex;
+  position: absolute;
+}
+/* .dialog[open] {
   animation: show .3s ease-in-out normal forwards;
 }
 
@@ -42,4 +46,4 @@ dialog.hide {
   to {
     transform: translateX(0%);
   }
-}
+} */

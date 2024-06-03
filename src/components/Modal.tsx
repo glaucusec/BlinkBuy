@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { IconX } from "@tabler/icons-react";
-import styles from "./Modal.module.css";
 
 type ModalProps = {
   isOpen: boolean;
   hasCloseBtn?: boolean;
   onClose?: () => void;
   children: JSX.Element;
-  position: string;
+  position?: string;
 };
 
 function Modal({

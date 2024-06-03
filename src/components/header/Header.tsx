@@ -1,21 +1,18 @@
 "use client";
 import React, { useState, useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 import { IconMenu2, IconUser, IconShoppingBag } from "@tabler/icons-react";
-
 import Search from "./Search";
 import MensHoverMenu from "./MensHoverMenu";
 import WomensHoverMenu from "./WomenHoverMenu";
-
 import MobileSideNav from "./MobileSideNav";
 import UserMenu from "./UserMenu";
 
-import { CartContext } from "../../context/CartContext";
-
 function Header() {
   const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
-  const { cartOpen, toggleCart, cartItemCount } = useContext(CartContext);
+  const { toggleCart, cartItemsCount } = useContext(CartContext);
 
   return (
     <nav className="border-b border-solid grid grid-cols-3 lg:grid-cols-[3fr_2fr] lg:gap-26 sticky top-0 z-20 bg-white px-4 2xl:px-24 h-14 lg:h-16">
@@ -72,15 +69,20 @@ function Header() {
           <UserMenu />
         </div>
         <div className="px-2 flex items-center h-full">
-          <span
+          <div
             onClick={() => toggleCart(true)}
             className="cursor-pointer relative"
           >
             <IconShoppingBag className="" stroke={2} />
-            <span className="flex items-center justify-center text-white text-sm absolute w-4 h-4 top-0 right-0 translate-x-1 -translate-y-1 rounded-full bg-red-500">
-              {cartItemCount}
-            </span>
-          </span>
+            {cartItemsCount > 0 && (
+              <span
+                suppressHydrationWarning={true}
+                className="flex items-center justify-center text-white text-sm absolute w-4 h-4 top-0 right-0 translate-x-1 -translate-y-1 rounded-full bg-red-500"
+              >
+                {cartItemsCount}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </nav>

@@ -2,14 +2,7 @@ import { IconMinus, IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-
-type CartItemType = {
-  id: string;
-  title: string;
-  price: number;
-  discountedPrice: number;
-  image: string;
-};
+import { CartItemType } from "../../lib/types";
 
 function CartItem({ cartItem }: { cartItem: CartItemType }) {
   const { removeItemFromCart, incrementItemQuantity, decrementItemQuantity } =

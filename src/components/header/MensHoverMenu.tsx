@@ -69,7 +69,7 @@ function MensHoverMenu() {
                 </p>
               </div>
               <div className="flex justify-center items-center">
-                <AngleNextIcon stroke={1} />
+                <AngleNextIcon stroke="1" />
               </div>
             </section>
             <section className="grid grid-cols-[1fr_4fr_1fr]">
@@ -86,7 +86,7 @@ function MensHoverMenu() {
                 </p>
               </div>
               <div className="flex justify-center items-center">
-                <AngleNextIcon stroke={1} />
+                <AngleNextIcon stroke="1" />
               </div>
             </section>
             <section className="grid grid-cols-[1fr_4fr_1fr]">
@@ -103,7 +103,7 @@ function MensHoverMenu() {
                 </p>
               </div>
               <div className="flex justify-center items-center">
-                <AngleNextIcon stroke={1} />
+                <AngleNextIcon stroke="1" />
               </div>
             </section>
           </div>
