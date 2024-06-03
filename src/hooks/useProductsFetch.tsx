@@ -2,14 +2,23 @@
 
 import { useEffect, useState, useContext } from "react";
 import { QueryContext } from "../context/QueryContext";
+import { ProductType } from "../lib/types";
 
-function useProductsFetch(pageNumber: number): void {
+type useProductsFetchReturn = [
+  ProductType[],
+  boolean,
+  boolean,
+  number | null,
+  boolean | Error
+];
+
+function useProductsFetch(pageNumber: number): useProductsFetchReturn {
   const { q, queryParams } = useContext(QueryContext);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [totalHits, setTotalHits] = useState(null);
-  const [hasMore, setHasMore] = useState(false);
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean | Error>(false);
+  const [totalHits, setTotalHits] = useState<number | null>(null);
+  const [hasMore, setHasMore] = useState<boolean>(false);
 
   // Remove the old products when the query is changed.
   useEffect(() => {
@@ -71,7 +80,13 @@ function useProductsFetch(pageNumber: number): void {
         setTotalHits(productsData.totalHits);
         setLoading(false);
       } catch (err) {
-        if (err.name == "AbortError") setError(err);
+        if (err instanceof Error) {
+          if (err.name == "AbortError") {
+            setError(err);
+          }
+        } else {
+          setError(new Error("An unknown error occurred"));
+        }
       }
     }
     fetchData();
