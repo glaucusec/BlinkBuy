@@ -10,7 +10,7 @@ type ProductProps = {
   product__regular: number;
   product__sale: number;
   product__at__lowest?: boolean;
-  bestseller?: boolean;
+  bestseller?: boolean | null;
   padding?: boolean;
 };
 
