@@ -1,27 +1,28 @@
 const { PrismaClient } = require("@prisma/client");
 
 import { joggers, co_ords, oversized_tshirts } from "./men";
-import { womenCoords } from "./data/womenCoords";
+import { womenTShirts } from "./data/womenTshits";
 
 // https://github.com/prisma/prisma/discussions/2222
 const prisma = new PrismaClient();
 
 async function main() {
-  seedToDatabase(joggers);
-  seedToDatabase(co_ords);
-  seedToDatabase(oversized_tshirts);
-  seedToDatabase(womenCoords)
+  await prisma.color.deleteMany();
+  await prisma.tag.deleteMany();
+  await prisma.size.deleteMany();
+  await prisma.image.deleteMany();
+  await prisma.product.deleteMany();
+
+  await seedToDatabase(joggers);
+  await seedToDatabase(co_ords);
+  await seedToDatabase(oversized_tshirts);
+  await seedToDatabase(womenTShirts)
 }
 
 async function seedToDatabase(arr: any[]) {
   try {
     console.log("Starting seeding to database...");
     // Delete any data; if exists
-    await prisma.color.deleteMany();
-    await prisma.tag.deleteMany();
-    await prisma.size.deleteMany();
-    await prisma.image.deleteMany();
-    await prisma.product.deleteMany();
 
     // Loop through product data and insert each of them.
     for (let p of arr) {
