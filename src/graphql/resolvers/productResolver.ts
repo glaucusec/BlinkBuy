@@ -127,5 +127,23 @@ export const GQLResolver = {
       });
       return product;
     },
+    latest_items: async (_: { _: unknown; args: unknown }) => {
+      const products = await prisma.product.findMany({
+        orderBy: {
+          updatedAt: "desc",
+        },
+        include: { images: true },
+        take: 8,
+      });
+
+      const updatedProducts = products.reduce((acc, product) => {
+        const updatedProduct = { ...product, image: product.images[0].url };
+        delete updatedProduct.images;
+        acc.push(updatedProduct);
+        return acc;
+      }, []);
+
+      return updatedProducts;
+    },
   },
 };

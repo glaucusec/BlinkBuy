@@ -1,7 +1,8 @@
 export const GQLSchema = /* GraphQL*/ `
     type Query {
         products(q: String, take: Int!, page: Int!, colors: [String], prices: [String], sizes: [String]): ProductList!,
-        product(id: ID!): Product!                                                                                                                      
+        product(id: ID!): Product!,
+        latest_items: [LatestItem!]!                                                                                                                
     }
 
     type ProductList {
@@ -32,5 +33,17 @@ export const GQLSchema = /* GraphQL*/ `
         isActive: Boolean,
         isBestSeller: Boolean,
         published: Boolean,
+    }
+
+    type LatestItem {
+        id: ID,
+        title: String,
+        discountedPrice: Int,
+        price: Float,
+        image: String,
+    }
+
+    type LatestItems {
+        latest_items: [LatestItem]
     }
 `;
