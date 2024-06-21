@@ -1,8 +1,15 @@
 const { PrismaClient } = require("@prisma/client");
 
-import { joggers, co_ords, oversized_tshirts } from "./men";
+import { m_co_ords } from "./data/m_co_ords";
+import { m_joggers } from "./data/m_joggers";
+import { m_oversized } from "./data/m_oversized";
+import { m_shorts } from "./data/m_shorts";
+import { m_tshirts } from "./data/m_tshirts";
+import { w_co_ords } from "./data/w_co-ords";
+import { w_joggers } from "./data/w_joggers";
+import { w_shorts } from "./data/w_shorts";
+import { w_tshirt_dresses } from "./data/w_tshirt_dress";
 import { w_tshirts } from "./data/w_tshirts";
-
 // https://github.com/prisma/prisma/discussions/2222
 const prisma = new PrismaClient();
 
@@ -13,9 +20,15 @@ async function main() {
   await prisma.image.deleteMany();
   await prisma.product.deleteMany();
 
-  await seedToDatabase(joggers);
-  await seedToDatabase(co_ords);
-  await seedToDatabase(oversized_tshirts);
+  await seedToDatabase(m_co_ords);
+  await seedToDatabase(m_joggers);
+  await seedToDatabase(m_oversized);
+  await seedToDatabase(m_shorts);
+  await seedToDatabase(m_tshirts);
+  await seedToDatabase(w_co_ords);
+  await seedToDatabase(w_joggers);
+  await seedToDatabase(w_shorts);
+  await seedToDatabase(w_tshirt_dresses);
   await seedToDatabase(w_tshirts);
 }
 
