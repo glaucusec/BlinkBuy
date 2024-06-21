@@ -76,22 +76,22 @@ function ProductGrid({
             <Product
               ref={lastElementRef}
               key={p.id}
-              product__id={p.id}
-              product__image={p.images[0]}
-              product__name={p.title}
-              product__sale={p.price}
-              product__regular={p.discountedPrice}
+              id={p.id}
+              image_url={p.images[0]}
+              title={p.title}
+              price={p.price}
+              discounted_price={p.discountedPrice}
             />
           );
         }
         return (
           <Product
             key={p.id}
-            product__id={p.id}
-            product__image={p.images[0]}
-            product__name={p.title}
-            product__sale={p.price}
-            product__regular={p.discountedPrice}
+            id={p.id}
+            image_url={p.images[0]}
+            title={p.title}
+            price={p.price}
+            discounted_price={p.discountedPrice}
           />
         );
       })}
