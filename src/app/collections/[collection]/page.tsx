@@ -8,16 +8,16 @@ type collectionsDataType = {
 };
 
 const collectionData: collectionsDataType = {
-  "fashion-joggers-men": { bannerURL: "", tag: "mens_joggers" },
-  "best-selling-co-ord-sets": { bannerURL: "", tag: "mens_co_ords" },
-  "men-oversized-t-shirts": { bannerURL: "", tag: "mens_oversized" },
+  "fashion-joggers-men": { bannerURL: "", tag: "fashion-joggers-men" },
+  "best-selling-co-ord-sets": { bannerURL: "", tag: "men_co_ords" },
+  "men-oversized-t-shirts": { bannerURL: "", tag: "mens_oversized_tshirts" },
   "pick-printed-t-shirts": { bannerURL: "", tag: "mens_tshirts" },
   "mens-shorts-collection": { bannerURL: "", tag: "mens_shorts" },
   "women-t-shirts": { bannerURL: "", tag: "womens_tshirts" },
-  "women-co-ords": { bannerURL: "", tag: "women_co_ords" },
-  "joggers-for-women": { bannerURL: "", tag: "women_joggers" },
-  "women-t-shirt-dress": { bannerURL: "", tag: "women_tshirt_dresses" },
-  "women-shorts": { bannerURL: "", tag: "women_shorts" },
+  "women-co-ords": { bannerURL: "", tag: "women-co-ords" },
+  "joggers-for-women": { bannerURL: "", tag: "joggers-for-women" },
+  "women-t-shirt-dress": { bannerURL: "", tag: "women_t_shirt_dress" },
+  "women-shorts": { bannerURL: "", tag: "women-shorts" },
 };
 
 async function fetchProductsByCollection(collectionKey: string) {
@@ -64,17 +64,18 @@ export default async function page({
   }
 
   const products = await fetchProductsByCollection(collection);
+  console.log(products)
 
   return (
     <div className="py-6 px-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
       {products.map((product) => {
         return (
           <Product
-            product__id={product.id}
-            product__image={product.image}
-            product__name={product.title}
-            product__regular={product.discountedPrice}
-            product__sale={product.price}
+            id={product.id}
+            image_url={product.image}
+            title={product.title}
+            discounted_price={product.discountedPrice}
+            price={product.price}
             key={product.id}
             bestseller={product.isBestSeller}
           />
