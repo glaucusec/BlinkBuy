@@ -20,7 +20,7 @@ const collectionData: collectionsDataType = {
   "women-shorts": { bannerURL: "", tag: "women_shorts" },
 };
 
-export async function fetchProductsByCollection(collectionKey: string) {
+async function fetchProductsByCollection(collectionKey: string) {
   const collectionInfo = collectionData[collectionKey];
   if (!collectionInfo) {
     throw new Error(`Collection Key ${collectionKey} not found!`);

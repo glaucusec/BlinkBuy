@@ -1,4 +1,4 @@
-export const womenTShirts = [
+export const w_tshirts = [
   {
     color: ["Marine"],
     title: "Boyfriend Fit Cotton T-Shirt",

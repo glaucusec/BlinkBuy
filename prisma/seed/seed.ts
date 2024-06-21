@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 
 import { joggers, co_ords, oversized_tshirts } from "./men";
-import { womenTShirts } from "./data/womenTshits";
+import { w_tshirts } from "./data/w_tshirts";
 
 // https://github.com/prisma/prisma/discussions/2222
 const prisma = new PrismaClient();
@@ -16,7 +16,7 @@ async function main() {
   await seedToDatabase(joggers);
   await seedToDatabase(co_ords);
   await seedToDatabase(oversized_tshirts);
-  await seedToDatabase(womenTShirts)
+  await seedToDatabase(w_tshirts);
 }
 
 async function seedToDatabase(arr: any[]) {
