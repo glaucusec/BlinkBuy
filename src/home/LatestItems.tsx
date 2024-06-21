@@ -3,16 +3,15 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import Product from "../components/Product";
 import PrevButton from "../components/buttons/PrevButton";
 import NextButton from "../components/buttons/NextButton";
 
-import products from "../data/LatestItemsData";
-
 function LatestItems() {
+  const [latestProducts, setLatestProducts] = useState([]);
   const [sliderRef, setSliderRef] = useState<Slider | null>(null);
 
   let settings = {
@@ -49,6 +48,39 @@ function LatestItems() {
       },
     ],
   };
+
+  useEffect(() => {
+    async function fetchLatestItems() {
+      try {
+        const response = await fetch("/api/graphql/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+            {
+              latest_items {
+                id
+                title
+                discountedPrice
+                price
+                image
+              }
+            }`,
+          }),
+        });
+        const JsonResponse = await response.json();
+        const data = JsonResponse.data;
+        setLatestProducts(data.latest_items);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchLatestItems();
+  }, []);
+
   return (
     <div className="latest-items">
       <div
@@ -66,15 +98,16 @@ function LatestItems() {
         <NextButton onClick={sliderRef?.slickNext} />
 
         <Slider ref={setSliderRef} {...settings}>
-          {products.map((p) => {
+          {latestProducts.map((p) => {
             return (
               <Product
-                key={p.product__id}
-                product__image={p.product__image}
-                product__name={p.product__name}
-                product__regular={p.product__regular}
-                product__sale={p.product__sale}
-                product__at__lowest={p.product__at__lowest}
+                key={p.id}
+                id={p.id}
+                image_url={p.image}
+                title={p.title}
+                discounted_price={p.discountedPrice}
+                price={p.price}
+                lowest_price={true}
                 padding={true}
                 bestseller={true}
               />
