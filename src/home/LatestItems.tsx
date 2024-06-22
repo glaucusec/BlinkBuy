@@ -33,7 +33,7 @@ function LatestItems() {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -41,7 +41,7 @@ function LatestItems() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 3,
           initialSlide: 2,
         },
@@ -82,7 +82,7 @@ function LatestItems() {
   }, []);
 
   return (
-    <div className="latest-items">
+    <div className="latest-items p-2">
       <div
         id="latest-item-header"
         className="flex flex-col justify-center items-center pb-12"
@@ -94,9 +94,6 @@ function LatestItems() {
       </div>
 
       <div className="latest-items-wrapper relative">
-        <PrevButton onClick={sliderRef?.slickPrev} />
-        <NextButton onClick={sliderRef?.slickNext} />
-
         <Slider ref={setSliderRef} {...settings}>
           {latestProducts.map((p) => {
             return (
@@ -114,6 +111,8 @@ function LatestItems() {
             );
           })}
         </Slider>
+        <PrevButton onClick={sliderRef?.slickPrev} />
+        <NextButton onClick={sliderRef?.slickNext} />
       </div>
       <div className="flex justify-center my-14">
         <button className="border rounded-full border-blue-950 px-20 py-1">

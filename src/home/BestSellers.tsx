@@ -50,6 +50,7 @@ async function BestSellers() {
               title={product.title}
               discounted_price={product.discountedPrice}
               price={product.price}
+              lowest_price={true}
             />
           );
         })}

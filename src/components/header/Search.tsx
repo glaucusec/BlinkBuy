@@ -31,6 +31,7 @@ export default function Search() {
   const router = useRouter();
   const pathname = usePathname();
   const [inputValue, setInputValue] = useState(q);
+  const [showSearchBox, setShowSearchBox] = useState(false); // search box for smaller screens
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
@@ -57,7 +58,22 @@ export default function Search() {
 
   return (
     <div className="md:border-2 border-solid flex justify-between items-center gap-2 p-1 ">
-      <IconSearch height={20} width={20} />
+      <IconSearch
+        onClick={() => setShowSearchBox((prev) => !prev)}
+        className="cursor-pointer"
+        height={20}
+        width={20}
+      />
+      {showSearchBox && (
+        <div className="flex flex-row gap-3 items-center absolute bg-gray-100 border border-gray-100 h-12 top-14 left-0 w-full md:hidden">
+          <IconSearch className="cursor-pointer" height={20} width={20} />
+          <input
+            onChange={searchInputChangeHandler}
+            placeholder="Search..."
+            className="bg-gray-100 w-full h-full outline-none"
+          />
+        </div>
+      )}
       <input
         onChange={searchInputChangeHandler}
         type="text"
